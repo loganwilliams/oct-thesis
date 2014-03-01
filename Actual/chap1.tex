@@ -10,6 +10,8 @@
 
 \section{Motivations for a fiber optic DOCM system}
 
+\label{sec:intro}
+
 The mammilian cochlea is capable of remarkable sensory perception. It can distinguish motions as small as the radius of a hydrogen atom and discriminate between up to 30 frequencies within a single semitone. \cite{ghafarri} However, the mechanics of motion in the inner ear remain poorly understood. The Micromechanics Group at RLE is  analyzing motion in the cochlea in order to more fully understand what gives rise to these remarkable sensory abilities.
 
 \begin{figure}[h!]
@@ -167,6 +169,7 @@ E_b(t) & = E_b \exp{(2 \pi t j (f + F_2))}
 It can be seen via an identical simplification to the above that the combination of these electric field amplitudes creates a carrier wave with frequency equal to the absolute value of $F_1 - F_2$.
 
 \section{Doppler OCT with AOMs}
+\label{sec:doppler_aom}
 
 Scattering off of moving particles induces a change in the frequency of scattered light.
 
@@ -217,15 +220,17 @@ I(t) = E_a^2 + E_b^2 + 2 E_b E_a \cos{\left(2 \pi t \left(\Delta F + f' \left( \
 The frequency shift induced by the motion of the media can clearly be seen in the instaneous phase of the intensity oscillation.
 
 \begin{dmath}
+\label{eq:phase_aom_doppler}
 \phi(t) = 2 \pi t \left(\Delta F + f' \left( \frac{A_o \cos{\omega t}}{c} \right)   \right)
 \end{dmath}
 
-This is equivalent to frequency modulation, with the periodic change in frequency of
+This is equivalent to frequency modulation, with the periodic change in frequency of:
 
 \begin{equation}
 f' \left( \frac{A_o \cos{\omega t}}{c} \right)
 \end{equation}
 
+This oscillation can be extracted from the captured signal using the Hilbert transform, as discussed in Section \ref{sec:sigproc_mo_anal}.
 
 \section{Signal processing}
 
@@ -271,9 +276,69 @@ It can therefore be seen that the envelope component of the signal can be calcul
 A(t) \approx \sqrt{(x(t))^2 + H(x(t))^2}
 \end{equation}
 
-The envelope, which does need the high sampling rate previously required in order to capture the carrier frequency, can then be downsampled to the resolution required by the imaging
+The envelope, which does need the high sampling rate previously required in order to capture the carrier frequency, can then be downsampled to the resolution required by the imaging application.
+
+\subsection{Analyzing motion}
+\label{sec:sigproc_mo_anal}
+
+%As the reference signal $V_{ref}$ is at exactly half the frequency of the captured heterodyne signal $V_{het}$, the following equation gives the instantaneous difference in phase.
+
+As we showed in Section \ref{sec:doppler_aom}, the phase of the amplitude of light scattered off of media moving periodically, which we will refer to as the heterodyne signal, $V_{\mathrm{het}}$, can be expressed as follows.
+
+\begin{equation}
+\phi_{\mathrm{het}}(t) = 2 \pi t \left(\Delta F + f' \left( \frac{A_o \cos{\omega t}}{c} \right)   \right) + \phi_{\mathrm{offset}}
+\end{equation}
+
+We also must capture a reference signal, notated as $V_{\mathrm{ref}}$, which is the difference between the two RF drive frequencies. This frequency difference is exactly half the carrier frequency of the heterodyne signal, so its phase may be written as:
+
+\begin{equation}
+\phi_{\mathrm{ref}}(t) = 2 \pi t \frac{\Delta F}{2}
+\end{equation}
+
+The instantaneous phase of an arbitrary signal may be estimated as follows, where $H$ is the Hilbert transform also discussed in Section \ref{sec:aom_carrier}.
+
+\begin{equation}
+\phi(t) = \tan^{-1} \left( \frac{H(x)(t)}{x(t)} \right)
+\end{equation}
+
+Therefore, the instantaneous phase difference between the heterodyne signal and the reference signal may be written as:
+
+\begin{equation}
+\phi(t) = \tan^{-1}\left( \frac{H(V_{\mathrm{het}})(t)}{V_{\mathrm{het}}(t)} \right) - 2\tan^{-1}\left( \frac{H(V_{\mathrm{ref}})(t)}{V_{\mathrm{ref}}(t)} \right)
+\end{equation}
+
+Substituting in from Equation \ref{eq:phase_aom_doppler}, with $c$ replaced by $c/n$ to account for the refractive index of the media.
+
+\begin{equation}
+\phi_{\mathrm{het}}(t) - 2 \phi_{\mathrm{ref}}(t) = 2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right) + \phi_{\mathrm{offset}}
+\end{equation}
+
+Because the RF frequency $F_1 << f$, the optical frequency, we can approximate $f' = f + F_1 \approx f$, and simplify the equation above. The equation can be made simpler still by simplifying to a wavenumber.
+
+\begin{equation}
+2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right) + \phi_{\mathrm{offset}} \approx k n A_o \cos{\omega t} + \phi_{\mathrm{offset}}
+\end{equation}
+
+The constant offset term may be subtracted off, and consequently the displacement of the sample, $D(t)$ may be calculated.
+
+% ??? Where does Stan's factor of two come from?
+
+\begin{equation}
+D(t) = \frac{1}{kn} \phi(t)
+\end{equation}
 
 \section{Literature review}
 
-Hong
-Mendeley
+As mentioned in Section \ref{sec:intro}, much of this research is an textension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong}
+
+From an optical perspective, there are other researchers that have used GRIN lens optics as an endoscopic objective lens, for instance T. Xie et. al. in 2006. \cite{Xie2006}
+
+%Why time domain? This differentiates our work? Can I spin it positively?
+
+Some work has been done, for instance by H. Subhash et. al. in the field of spectral domain doppler OCT. \cite{Subhash2012} In order to detect motion, the system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they create. Unfortunately, Subhash et. al. did not provide sensitivity results to compare against, but it is theorized that a time domain approach can result in higher resolution motion measurements, though at the considerable expense of requiring physical motion to scan the z-axis.
+
+Also Choudhury \cite{Choudhury2011}
+
+This work also continues the active effort of minimizing the size of OCT apparatus, for example the work of B. Goldberg et. al. in the creation of a miniature swept frequency laser source for OCT imaging. \cite{Goldberg2009}
+
+Also of interest in the development of this system, and still a developing field, is the use of algorithms and more sophisticated signal processing to improve the image quality and resolution ability of captured OCT data. Of significant interest is the possibility of correcting for dispersive effects caused by the propogation of light through the sample media. \cite{Xie2005} \cite{DrexlerBook}
