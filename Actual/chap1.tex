@@ -21,15 +21,17 @@ The mammilian cochlea is capable of remarkable sensory perception. It can distin
       \label{fig:cochlea}
 \end{figure}
 
-A tissue of particular interest in the cochlea is the tectorial membrane, which is in direct contact with the hair cells, as shown in Figure \ref{fig:cochlea}. This tissue has some interesting mechanical properties, and its position in relation to the sensory cells suggests it could play in active role in motion amplification or in frequency discrimination. However, as it is almost entirely water, it is very difficult to image with conventional imaging techniques.
+A tissue of particular interest in the cochlea is the tectorial membrane, which is in direct contact with the hair cells, as shown in Figure \ref{fig:cochlea}. This tissue has some interesting mechanical properties, and its position in relation to the sensory cells suggests it could play in active role in motion amplification or in frequency discrimination. However, as it is almost entirely water, it is very difficult to image with conventional imaging techniques. \cite{needcitation}
 
 A technique known as optical coherence tomography allows three-dimensional imaging into tissues, such as the tectorial membrane, by making use of the auto-correlation properties of temporally incoherent light. When used with a high NA lens for high resolution transverse imaging, the technique is also known as optical coherence microscopy. This technique can image deeper into tissues than other three-dimensional imaging methods such as confocal microscopy. Furthermore, OCT allows for measurement of motion (citation here?), both constant and periodic, as will be explained later in the introduction.
 
-The Micromechanics Group at RLE currently uses a doppler optical coherence microscopy, or DOCM (a subset of doppler optical coherence tomography, or DOCT) system to image the mammilian cochlea and acquire data about the mechanical motions of tissues. This system was developed by former student Stanley Hong. \cite{hong}
+The Micromechanics Group at RLE currently uses a doppler optical coherence microscopy, or DOCM (a subset of doppler optical coherence tomography, or DOCT) system to image the mammilian cochlea and acquire data about the mechanical motions of tissues. This system was developed by former student Stanley Hong, and as of such, will be referred to as the Hong System. \cite{hong}
 
-The current system is designed around free space optics that have been carefully aligned and positioned on an optics table. This design has several disadvantages, chiefly that it is difficult and time consuming to align with the animal that is being imaged. This process can take several hours, due to the need to move the animal precisely under the DOCT objective, and the need to align the cochlea with the fixed optical axis of the DOCT system. Furthermore, the current free space system is bulky and fragile.
+The Hong system is designed around free space optics that have been carefully aligned and positioned on an optics table. This design has several disadvantages, chiefly that it is difficult and time consuming to align with the animal that is being imaged. This process can take several hours, due to the need to move the animal precisely under the DOCT objective, and the need to align the cochlea with the fixed optical axis of the DOCT system. Furthermore, the current free space system is bulky and fragile.
 
-The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic coupled components. Fiber optics can be more compact, and are almost insensitive to movement or changes in physical shape (one notable exception to this, with regards to polarization, will be discussed in Chapter 2). Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for a variable angle optical axis, and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
+The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic coupled components. As of such, it will be hereafter reffered to as the FO-DOCM system. Fiber optics can be more compact, and are almost insensitive to movement or changes in physical shape (one notable exception to this, with regards to polarization, will be discussed in Chapter 2). Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for a variable angle optical axis, and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
+
+Additionally, the FO-DOCM system uses a longer wavelength of light than the Hong system, 1310nm IR instead of 800nm IR. While this has some disadvantages in terms of axial resolution capability, as discussed in Section \ref{sec:axial_res}, this wavelength also has several advantages. It is commonly used for comm that has significantly reduced scattering through bone tissue, and therefore greater transmission. This has the potential to obviate the current need to image through either the round window or a hole cut in the cochlear apex. \cite{needcitation}
 
 \section{Principle of operation of time domain OCT}
 \label{sec:principles_oct}
@@ -327,7 +329,7 @@ The constant offset term may be subtracted off, and consequently the displacemen
 D(t) = \frac{1}{kn} \phi(t)
 \end{equation}
 
-\section{Literature review}
+\section{Related work}
 
 As mentioned in Section \ref{sec:intro}, much of this research is an textension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong}
 

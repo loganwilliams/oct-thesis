@@ -10,17 +10,21 @@ To prevent possibly confounding factors, the system was first tested with the AO
 
 The ``sample'' is replaced by a mirror for maximum possible SNR.
 
+In this case, the $z$-axis stage was moved in increments of 100 nanometers and the DC voltage from the photodetector was acquired and stored for reach position. This ensures that the distance measured is accurate.
+
 \begin{figure}[h!]
 \centering
 \includegraphics[width=1.0\textwidth]{Images/Results/psf-noaom.png}
 \caption{The point spread function, as measured, and the best Gaussian fit.}
 \end{figure}
 
-With this method, a full width half maximum PSF width of 8.4 microns was measured. The calculated PSF is noisy as a result of the envelope detection method -- since the carrier frequency without AOMs is so much closer to the bandwidth of the PSF, the analytic signal extraction is much less exact.
+With this method, a full width half maximum PSF width of 8.4 microns was measured. The calculated PSF is noisy as a result of the envelope detection method -- since the carrier frequency without AOMs is so much closer to the bandwidth of the PSF, the analytic signal extraction is much less exact. Furthermore, the variability in the stage position (on the order of 100nm) results in phase noise in the carrier wave that makes envelope extraction more difficult.
 
 \subsection{Results with AOMs}
 
 After the verification of the axial resolution without the AOMs, verification with them in place could proceed.
+
+In a similar way, this data was acquired by moving the stage a small amount. However, DC voltage data cannot be acquired, as the relevant factor now is the amplitude of the 500 KHz carrier wave. Therefore, a small 0.1 second sample of the carrier wave was recorded for each position.
 
 \section{Verification of transverse resolution}
 
