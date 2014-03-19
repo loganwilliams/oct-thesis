@@ -7,6 +7,7 @@
 \chapter{Introduction}
 
 %% Chapter outline goes here
+In this chapter, the creation of a fiber optic doppler optical coherence microscopy stem will be motivated. Furthermore, the mathematical underpinnings of the system will be introduced, and recent related work will be discussed.
 
 \section{Motivations for a fiber optic DOCM system}
 
@@ -105,7 +106,7 @@ The transverse resolution is the standard diffraction limit for a lens. \cite{he
 
 As derived in the previous section, the frequency of the carrier is dependent on the speed of the z-axis motion. For typical cases, this is on the order of 1 KHz. If the speed of the scan is variable, this carrier is inconsistent, and if the scan stops at a particular point, the frequency is near zero (non-zero only due to mechanical vibration).
 
-In some cases, it is desirable to have a higher carrier frequency, or a carrier frequency that is independent of the speed of the z-axis scan. This can also be useful for cases where the z speed is zero, as in \begin{em}en-face\end{em} OCT. \cite{bouma}
+In some cases, it is desirable to have a higher carrier frequency, or a carrier frequency that is independent of the speed of the z-axis scan. This can also be useful for cases where the z speed is zero, as in \begin{em}en-face\end{em} OCT. \cite{bouma} \cite{hitzenberger}
 
 \subsection{Principle of operation of acousto optic modulators}
 
@@ -115,7 +116,7 @@ In some cases, it is desirable to have a higher carrier frequency, or a carrier 
 \caption{Light scatters off of acoustic waves in a quartz crystal, changing both frequency and angle.}
 \end{figure}
 
-Acousto optic modulators (AOMs) are crystals, typically quartz, that use acousto-optic effect to shift the frequency of light. A transducer establishes an acoustic standing wave at RF frequencies inside the crystal. Compression waves in the crystal can be modeled as gradients in the refractive index. [McCarron] Light incident upon these refractive index gradients will be scattered.
+Acousto optic modulators (AOMs) are crystals, typically quartz, that use acousto-optic effect to shift the frequency of light. A transducer establishes an acoustic standing wave at RF frequencies inside the crystal. Compression waves in the crystal can be modeled as gradients in the refractive index. Light incident upon these refractive index gradients will be scattered. \cite{haus}
 
 \begin{figure}[h!]
 \centering
@@ -135,15 +136,14 @@ Conservation of momentum requires that $\theta_i = \theta_d$, which simplifies t
 n \lambda_L = 2 \Lambda \sin{\theta_d}
 \end{equation}
 
-
-This Bragg diffraction also shifts the frequency of the light up by $mF$, where $m$ is the order of diffraction, and $F$ is the acoustic wave frequency.
+This Bragg diffraction also shifts the frequency of the light up by $mF$, where $m$ is the order of diffraction, and $F$ is the acoustic wave frequency. \cite{haus}
 
 In a fiber-coupled AOM, the input and output fibers are aligned with the first order diffraction beam.
 
 \subsection{Generating a carrier wave with AOMs}
 \label{sec:aom_carrier}
 
-Even with an imprecise or drifting optical frequency, the precise shift frequency induced by an AOM can be used to generate an extremely stable optical interference signal.
+Even with an imprecise or drifting optical frequency, the precise shift frequency induced by an AOM can be used to generate an extremely stable optical interference signal. \cite{hitzenberger}
 
 The instantaneous complex electric field can be written for two different frequencies can be written as
 
@@ -266,13 +266,13 @@ The Hilbert transform can be used to extract the envelope from the carrier. Give
 x(t) = A(t)\cos{(\omega t)}
 \end{equation}
 
-the Hilbert transform can generate the quadrature component, given by
+the Hilbert transform can generate the approximate quadrature component, given by
 
 \begin{equation}
 H(x(t)) \approx A(t) \sin{(\omega t)}
 \end{equation}
 
-It can therefore be seen that the envelope component of the signal can be calculated quite easily.
+It can therefore be seen that the envelope component of the signal can be calculated quite easily. \cite{oppenheim}
 
 \begin{equation}
 A(t) \approx \sqrt{(x(t))^2 + H(x(t))^2}
@@ -331,16 +331,16 @@ D(t) = \frac{1}{kn} \phi(t)
 
 \section{Related work}
 
-As mentioned in Section \ref{sec:intro}, much of this research is an textension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong}
-
-From an optical perspective, there are other researchers that have used GRIN lens optics as an endoscopic objective lens, for instance T. Xie et. al. in 2006. \cite{Xie2006}
+As mentioned in Section \ref{sec:intro}, much of this research is an extension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong} Hong's work is quite similar to this thesis, but is also different in several ways: the use of free space optics rather than fiber optic components, the use of a shorter wavelength source, and, most importantly, the revised alignment and positioning apparatus. Similar data and reuslts to that in \cite{hong} have been collected as part of this thesis, and may be compared directly.
 
 %Why time domain? This differentiates our work? Can I spin it positively?
 
-Some work has been done, for instance by H. Subhash et. al. in the field of spectral domain doppler OCT. \cite{Subhash2012} In order to detect motion, the system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they create. Unfortunately, Subhash et. al. did not provide sensitivity results to compare against, but it is theorized that a time domain approach can result in higher resolution motion measurements, though at the considerable expense of requiring physical motion to scan the z-axis.
+Some work has been done, for instance by H. Subhash et. al. in the field of spectral domain doppler OCT. \cite{Subhash2012} In order to detect motion, the system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they induce. Unfortunately, Subhash et. al. did not provide sensitivity results to compare against, but it is theorized that a time domain approach can result in higher resolution motion measurements, though at the considerable expense of requiring physical motion to scan the z-axis.
 
-Also Choudhury \cite{Choudhury2011}
+Choudhury et. al. have also performed work with spectral domain doppler OCT in 2011. They achieved results with an axial resolution of 13 microns and a motion detection noise floor of 300 pm. \cite{Choudhury2011} % The FO-DOCM system is shown to be competitive with these results.
+
+From an optical perspective, there are other researchers that have used GRIN lens optics as an endoscopic objective lens, for instance T. Xie et. al. in 2006. \cite{Xie2006} Their research used a spectral domain technique and involved a much larger GRIN rod that could be handheld.
 
 This work also continues the active effort of minimizing the size of OCT apparatus, for example the work of B. Goldberg et. al. in the creation of a miniature swept frequency laser source for OCT imaging. \cite{Goldberg2009}
 
-Also of interest in the development of this system, and still a developing field, is the use of algorithms and more sophisticated signal processing to improve the image quality and resolution ability of captured OCT data. Of significant interest is the possibility of correcting for dispersive effects caused by the propogation of light through the sample media. \cite{Xie2005} \cite{DrexlerBook}
+Also of interest in the development of this system, and still a developing technique, is the use of algorithms and more sophisticated signal processing to improve the image quality and resolution ability of captured OCT data. Of significant interest is the possibility of correcting for dispersive effects caused by the propogation of light through the sample media. \cite{Xie2005} \cite{DrexlerBook} These techniques could also potentially be used to correct for dispersion caused by fiber length mismatch.

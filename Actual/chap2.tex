@@ -1,6 +1,6 @@
 \chapter{System design}
 
-The fiber optic doppler optical coherence microscopy system is designed for cost-efficiency, and to meet the measurement requirements of the cochlear research peformed at the Micromechanics Group.
+In this chapter, the major components of the fiber optic doppler optical coherence microscopy system will be introduced, and the design constraints that led to their choice will be examined. The mechanical and optical design will be detailed. Finally, predictions of system performance will be made based on component choices.
 
 \section{System overview}
 
@@ -67,11 +67,21 @@ Two RF amplifiers, purchased from Mini-Circuits (model ZHL-3A) amplify the RF si
 
 \subsection{Reference path}
 
-%% Image of reference path setup
+%% TODO: Image of reference path setup
 
-The reference path uses a fiber optic collimator purchased from Thorlabs, and focuses it onto an AR-coated retroreflector. A retroreflector was used instead of a mirror for better alignment, as a retroreflector has no sensitivity to the angle offset between the collimated beam and its front surface.
+The reference path uses an adjustable focus fiber optic coupled collimator, and focuses it onto an AR-coated retroreflector. A retroreflector was used instead of a mirror to make alignment easier, as a retroreflector has no sensitivity to the angle offset between the collimated beam and its front surface. The collimator was initially used with an FC/APC fiber optic terminator, however, the $8^{\circ}$ face angle of FC/APC fiber connector reduced coupling efficiency dramatically. To fix this, a hybrid fiber patch cable was used, so that an FC/PC connector would connect to the collimator.
 
-A retroreflector does induce changes in the polarization of the beam, however, the polarization is effectively randomized due to strain and compression in the optical fiber.
+This setup was simulated with Zemax, as shown in Figure \ref{fig:reference_zemax}. Zemax predicted a single mode fiber coupling efficiency of -0.55 dB (as opposed to the -22.56 dB efficiency calculated with an FC/APC connector.)
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/Zemax/RP-raytrace.png}
+\caption{Zemax raytrace simulation of reference path.}
+\end{figure}
+
+The retroreflector was mounted on a non-motorized, single axis micropositioning stage, allowing the reference path length to be adjusted so that it aligns with the focal point of the sample path.
+
+One consequence of using a retroreflector instead of a mirror is that the polarization of the beam is changed. This could be cause for concern if a future iteration of this system was ued for polarization sensitive imaging, however, the optical polarization is effectively randomized due to strain and compression in the optical fiber already.
 
 \subsection{Sample path objective}
 
@@ -105,12 +115,12 @@ Assuming an isotropic scatterer, the fraction of optical power that will be reco
 \frac{1}{4} \left( 1 - \sqrt{\frac{W^2}{W^2 + 0.81}} \right) ^ 2
 \end{equation}
 
-A plot of this value for working distances between 0 and 5 mm is shown below.
+A plot of this value for working distances between 0 and 5 mm is shown in Figure \ref{fig:wd}.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.0\textwidth]{Images/System/grin_scattering.png}
-\caption{Captured light ratio as a function of working distance, in mm.}
+\includegraphics[width=0.6\textwidth]{Images/System/grin_scattering.png}
+\caption{Captured light ratio as a function of working distance, in mm. \label{fig:wd}}
 \end{figure}
 
 As previously discussed in Equation \ref{eq:tres}, the axial resolution is given by:
@@ -152,7 +162,9 @@ To control the angle, the z-stage is mounted on a horizontal aluminum cantilever
 \caption{The horizontal cantilever piece, with two slots allowing for angular adjustment.}
 \end{figure}
 
-The cantilever part was designed in SolidWorks and then CNC milled in the Edgerton Center Student Shop.
+The cantilever part was designed in SolidWorks and then milled on a CNC machine in the Edgerton Center Student Shop.
+
+An L-shaped part was designed to hold the horizontal cantilever. Later, a vertical part was added to enable continuous adjustment of cantilever height, and to allow for a higher maximum height, necessary as a result of the clearance requirements of the Prior axial stage. These parts were milled by hand at the Edgerton Center Student Shop.
 
 \subsection{Piezo motor stage for axial movement}
 
@@ -217,7 +229,7 @@ The microscope is composed of three lenses in two groups -- a 15mm spherical dou
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.8\textwidth]{Images/Microscope/microscope_layout.png}
+\includegraphics[width=0.8\textwidth]{Images/Microscope/microscope_layout_3.png}
 \caption{A raytrace diagram of the microscope layout, simulated in ZEMAX.}
 \end{figure}
 
@@ -274,7 +286,9 @@ Price & 2, at \$1500 each \\
 
 \section{Light detection and analog-to-digital conversion}
 
-The light is detected by a Newport New Focus 2117-FC photodiode with an integrated trans-conductance amplifier. This photodiode has a sensitivity range of 900-1700nm, and a transimpedance gain of up to $18.4 \times 10^6 \;\; \mathrm{V}/\mathrm{A}$.
+The light is detected by a Newport New Focus 2117-FC photodiode with an integrated trans-conductance amplifier. This photodiode has a sensitivity range of 800-1700nm, and a transimpedance gain of up to $18.8 \times 10^6 \;\; \mathrm{V}/\mathrm{A}$, with responsivity near $1 \mathrm{A}/\mathrm{W}$ at 1310 nm. Full specifications are detailed in Table \ref{table:pd}.
+
+As the interference carrier signal is set at 500 KHz, the photodiode low-pass and high-pass filters are configured to pass signals between 300 Khz and 1 MHz.
 
 \begin{figure}[h!]
 
@@ -287,14 +301,29 @@ The light is detected by a Newport New Focus 2117-FC photodiode with an integrat
 \centering
 \begin{tabular}{ >{\bf}r | l}
 Part number & \\
-Center wavelength & 1310 nm \\
--3dB Bandwidth & 100 nm \\
-Drive frequency & 80 MHz \\
-Drive power & 1.5 W \\
-Price & 2, at \$1500 each \\
+Wavelength range & 800 - 1700 nm \\
+Transimpedance gain & $18.8 \times 10^6 \mathrm{V/A}$ \\
+Noise equivalent power & 0.4 $mathrm{pW}/\sqrt{\mathrm{Hz}}$ \\
+Price & \$1390 \\
 \end{tabular}
-\caption{Specifications for the photo detector.}
-\end{table} 
+\caption{Specifications for the photo detector. \label{table:pd}}
+\end{table}
+
+The output from the photodiode is digitized by using an Interface Corporation PCI-3525 DAC/ADC card. Full specifications for this part are shown in Table \ref{table:dac}. Multiple PCI-3525 cards are daisy chained together to be able to capture $>2$ signals simultaneously. This is useful, as up to six signals may be of interest to capture: the photodiode output, the RF synthesizer difference frequency, the acoustic stimulus signal, and the two $z$-stage quadrature encoders.
+
+To capture these signals, a program was written in C to communciate with the PCI-3525 cards. The source for this program may be found in Appendix \ref{app:pci3525}. As the photodiode filters frequencies above 1 MHz, a sampling frequency of 2.5 MHz was choosen to avoid frequency aliasing. The capture program allows the length of the signal captured to be specified as an input argument, allowing for application flexibility.
+
+The PCI-3525 card can also be used to synthesize a low-frequency acoustic stimulus signal. This obviates the need to have a fifth input for the acoustic stimulus signal.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ >{\bf}r | l}
+Part number & PCI-3525 \\
+Bit depth & 12 \\
+Sampling rate & 10 MS/s \\
+\end{tabular}
+\caption{Specifications for the DAC. \label{table:dac}}
+\end{table}
 
 \section{Signal processing}
 \label{sec:sig_proc}
