@@ -7,13 +7,13 @@
 \chapter{Introduction}
 
 %% Chapter outline goes here
-In this chapter, the creation of a fiber optic doppler optical coherence microscopy stem will be motivated. Furthermore, the mathematical underpinnings of the system will be introduced, and recent related work will be discussed.
+In this chapter, the construction of a fiber optic doppler optical coherence microscopy stem will be motivated. Furthermore, the mathematical underpinnings of the system will be introduced, and recent related work will be discussed.
 
 \section{Motivations for a fiber optic DOCM system}
 
 \label{sec:intro}
 
-The mammilian cochlea is capable of remarkable sensory perception. It can distinguish motions as small as the radius of a hydrogen atom and discriminate between up to 30 frequencies within a single semitone. \cite{ghafarri} However, the mechanics of motion in the inner ear remain poorly understood. The Micromechanics Group at RLE is  analyzing motion in the cochlea in order to more fully understand what gives rise to these remarkable sensory abilities.
+The mammilian cochlea is capable of remarkable sensory perception. It can distinguish vibratory motion as small as the radius of a hydrogen atom and discriminate between up to 30 frequencies within a single semitone. \cite{ghafarri} However, the mechanics of motion in the inner ear remain poorly understood. The Micromechanics Group at RLE is  analyzing motion in the cochlea in order to more fully understand what gives rise to these remarkable sensory capabilities.
 
 \begin{figure}[h!]
   \centering
@@ -24,79 +24,79 @@ The mammilian cochlea is capable of remarkable sensory perception. It can distin
 
 A tissue of particular interest in the cochlea is the tectorial membrane, which is in direct contact with the hair cells, as shown in Figure \ref{fig:cochlea}. This tissue has some interesting mechanical properties, and its position in relation to the sensory cells suggests it could play in active role in motion amplification or in frequency discrimination. However, as it is almost entirely water, it is very difficult to image with conventional imaging techniques. \cite{needcitation}
 
-A technique known as optical coherence tomography allows three-dimensional imaging into tissues, such as the tectorial membrane, by making use of the auto-correlation properties of temporally incoherent light. When used with a high NA lens for high resolution transverse imaging, the technique is also known as optical coherence microscopy. This technique can image deeper into tissues than other three-dimensional imaging methods such as confocal microscopy. Furthermore, OCT allows for measurement of motion (citation here?), both constant and periodic, as will be explained later in the introduction.
+A technique known as optical coherence tomography allows three-dimensional imaging into tissues such as the tectorial membrane, by making use of the auto-correlation properties of temporally incoherent light. When used with a high NA lens for high resolution transverse imaging, the technique is also known as optical coherence microscopy. This technique can image deeper into tissues than other three-dimensional imaging methods such as confocal microscopy. Furthermore, OCT allows for measurement of motion, both constant and periodic. \cite{DrexlerBook}
 
 The Micromechanics Group at RLE currently uses a doppler optical coherence microscopy, or DOCM (a subset of doppler optical coherence tomography, or DOCT) system to image the mammilian cochlea and acquire data about the mechanical motions of tissues. This system was developed by former student Stanley Hong, and as of such, will be referred to as the Hong System. \cite{hong}
 
 The Hong system is designed around free space optics that have been carefully aligned and positioned on an optics table. This design has several disadvantages, chiefly that it is difficult and time consuming to align with the animal that is being imaged. This process can take several hours, due to the need to move the animal precisely under the DOCT objective, and the need to align the cochlea with the fixed optical axis of the DOCT system. Furthermore, the current free space system is bulky and fragile.
 
-The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic coupled components. As of such, it will be hereafter reffered to as the FO-DOCM system. Fiber optics can be more compact, and are almost insensitive to movement or changes in physical shape (one notable exception to this, with regards to polarization, will be discussed in Chapter 2). Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for a variable angle optical axis, and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
+The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic (FO) coupled components. Therefore, it will be hereafter reffered to as the FO-DOCM system. Fiber optics can be more compact, and are almost insensitive to movement or changes in physical shape (one notable exception to this is polarization sensitivity, which will be discussed in Chapter 2). Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for a variable angle optical axis, and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
 
 Additionally, the FO-DOCM system uses a longer wavelength of light than the Hong system, 1310nm IR instead of 800nm IR. While this has some disadvantages in terms of axial resolution capability, as discussed in Section \ref{sec:axial_res}, this wavelength also has several advantages. It is commonly used for comm that has significantly reduced scattering through bone tissue, and therefore greater transmission. This has the potential to obviate the current need to image through either the round window or a hole cut in the cochlear apex. \cite{needcitation}
 
 \section{Principle of operation of time domain OCT}
 \label{sec:principles_oct}
 
-Throughout this document, the coordinate axis parallel to the direction of light emission from the objective shall be referred to as the ``axial'' direction, or ``z'' axis. The plane perpendicular to this axis is known as the ``transverse'' plane, or, sometimes, the ``x'' and ``y'' axes.
+Throughout this document, the coordinate axis parallel to the direction of light emission from the objective shall be referred to as the ``axial'' direction, or ``z'' axis. The plane perpendicular to this axis is known as the ``transverse'' plane, or, sometimes, the ``x'' and ``y'' axes. A diagram of this definition is shown in Figure~\ref{fix:axis_def}.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.6\textwidth]{Images/Background/axes.png}
-\caption{Definition of axes.}
+\includegraphics[width=0.5\textwidth]{Images/Background/axes.png}
+\caption{Definition of axes.\label{fig:axis_def}}
 \end{figure}
 
 \begin{figure}[h!]
   \centering
-    \includegraphics[width=0.8\textwidth]{Images/Background/basic_oct.png}
-      \caption{A schematic of a basic OCT system.}
+    \includegraphics[width=0.5\textwidth]{Images/Background/basic_oct.png}
+      \caption{A schematic of a basic OCT system.\label{fig:basic_oct}}
 \end{figure}
 
 
-OCT functions by utilizing the principle of the Michelson interferometer, as shown in Figure 1. Light is split in to two beams. One is reflected from a mirror, the other is scattered from a biological sample. The light is then recombined and the intensity measured by a photodetector. When the optical path lengths of the two beams are closely matched, and interference pattern may be observed. By using temporally incoherent (broadband) light, the interference pattern is capable of absolute localization.
+OCT functions by utilizing the principle of the Michelson interferometer, as shown in Figure~\ref{fig:basic_oct}. Light is split into two beams. One is reflected from a mirror, the other is scattered from a biological sample. The light is then recombined and the intensity measured by a photodetector. When the optical path lengths of the two beams are closely matched, an interference pattern may be observed. By using temporally incoherent (broadband) light, the interference pattern is capable of absolute localization.
 
-The electric field from a temporally incoherent source can be modeled accurately as a wide-sense stationary random process with a certain power spectral density. \cite{Bouma} In the case where the scattering sample is replaced by a reflecting mirror, the mathematical analysis may be simplified greatly by assuming that two time delayed versions of this processes are being interfered. From this, we show that interference is the same as autocorrelation, and make use of the Wiener-Khinchin theorem. This derivation follows closely that of Fercher et. al. \cite{fercher}
+The electric field from a temporally incoherent source can be modeled accurately as a wide-sense stationary random process with a power spectral density corresponding to the optical spectrum of the source. \cite{Bouma} In the case where the scattering sample is replaced by a reflecting mirror, the mathematical analysis may be simplified greatly by assuming that the system is analyzing the interference of this random process with itself, delayed by the optical path length difference. From this, we show that interference is the same as autocorrelation, and make use of the Wiener-Khinchin theorem. This derivation follows closely that of Fercher et. al. \cite{fercher}
 
 The intensity of light with analytic (complex) amplitude $V(t)$ is defined as:
 
 \begin{equation}
-I(t) = V^*(t)V(t)
+I(t) = |V(t)|^2 = V^*(t)V(t)
 \end{equation}
 
-In an OCT system, the light from a reference path is combined with the light from a sample path after some delay. We may express this as:
+In an OCT system, the light from a reference path is combined with the light from a sample path after some delay. This may be expressed as:
 
 \begin{equation}
 V_D(t; \Delta t) = V_S(t) + V_R(t + \Delta t)
 \end{equation}
 
-Of course, since measuring instantaneous electric field amplitude is impossible, we are interested in ensemble averages of intensity. This gives the following result, where $\Gamma_{XY}$ represents the cross correlation between two random processes $X$ and $Y$.
+As measuring instantaneous electric field amplitude is impossible, only the ensemble averages of intensity are of interest. This gives the following result, where $\Gamma_{XY}$ represents the cross correlation between two random processes $X$ and $Y$.
 
 \begin{equation}
 \begin{aligned}
-\bar{I}_E(\Delta t) & =  \langle I_E(t; \Delta t) \rangle \\
-& =  \langle V^*_E(t; \Delta t) V_E(t; \Delta t) \rangle \\
+\bar{I}_D(\Delta t) & =  \langle I_D(t; \Delta t) \rangle \\
+& =  \langle V^*_D(t; \Delta t) V_D(t; \Delta t) \rangle \\
 & =  \langle I_S(t) \rangle + \langle I_R(t) \rangle + 2 \Re \{\Gamma_{SR} (\Delta t) \}
 \end{aligned}
 \end{equation}
 
-$\Delta t$ is proportional to the path length difference between the two beams, $\Delta t = \Delta z / c$. When both sample and reference paths are illuminated from the same light source, the cross correlation function above simplifies into an autocorrelation function of the light source. From here, the Wiener-Khinchin theorem can be applied, which states that the autocorrelation function of a wide-sense stationary random process is related to the process power spectral density by a Fourier transform.
+$\Delta t$, the time delay between the two signals, is proportional to the path length difference between the two beams, and may be calculated simply as $\Delta t = \Delta z / c$. When both sample and reference paths are illuminated from the same light source, the cross correlation function above simplifies into an autocorrelation function of the light source. From here, the Wiener-Khinchin theorem can be applied, which states that the autocorrelation function of a wide-sense stationary random process is related to the process power spectral density by a Fourier transform.
 
 \begin{equation}
 \Gamma_{XX}(\tau) = 2 \int_{0}^\infty S_{XX}(f) \exp(2 \pi j \tau f) \,df
 \end{equation}
 
-Therefore, the axial resolution in an OCT system is limited by the spectral properties of the light source. Given a source of center wavelength $\lambda_0$ and bandwidth $\Delta \lambda$, if we assume a Gaussian PSD, we may find the width of the autocorrelation function, and therefore the axial resolution. \cite{fercher}
+Therefore, the axial resolution in an OCT system is limited by the spectral properties of the light source. Given a source of center wavelength $\lambda_0$ and FWHM bandwidth $\Delta \lambda$, if we assume a Gaussian PSD, we may find the width of the autocorrelation function, and therefore the axial resolution. \cite{fercher}
 
 \begin{equation} \label{eq:ares}
 \delta_z = l_c = \frac{2 \ln{2}}{\pi} \frac{\lambda_0^2}{\Delta \lambda}
 \end{equation}
 
-This however, is just the envelope of the autocorrelation function. It is also modulated by a carrier, with a  frequency dependent on the wavelength of the light source, $\lambda_0$, and the speed of the scan, $v_s$. \cite{fercher}
+This however, is just the envelope of the autocorrelation function. The autocorrelation function also has a periodic interference component, with interference peaks seperated by one wavelength. This can be viewed as a carrier wave modulating the autocorrelatione envelope. The frequency of this carrier in time is therefore dependent both on the wavelength of the light source, $\lambda_0$, and the speed of the scan, $v_s$. \cite{fercher}
 
 \begin{equation} \label{eq:carrier}
 f_{mod} = 4 \pi v_s / \lambda_0
 \end{equation}
 
-The transverse resolution is the standard diffraction limit for a lens. \cite{hecht}
+The transverse resolution limit is the standard diffraction limit for a lens, but, depending on the quality of the objective lens optics, this may not be achievable. \cite{hecht}
 
 \begin{equation} \label{eq:tres}
 \delta_x = 0.61 \frac{\lambda}{NA}
@@ -104,7 +104,7 @@ The transverse resolution is the standard diffraction limit for a lens. \cite{he
 
 \section{Heterodyne OCT with Acousto-optic Modulators}
 
-As derived in the previous section, the frequency of the carrier is dependent on the speed of the z-axis motion. For typical cases, this is on the order of 1 KHz. If the speed of the scan is variable, this carrier is inconsistent, and if the scan stops at a particular point, the frequency is near zero (non-zero only due to mechanical vibration).
+As derived in the previous section, the frequency of the carrier is dependent on the speed of the z-axis motion. For typical cases, this is on the order of 1 KHz. If the speed of the scan is variable, this carrier is inconsistent, and if the scan stops at a particular point, the frequency is near zero (non-zero only due to spurious mechanical vibration).
 
 In some cases, it is desirable to have a higher carrier frequency, or a carrier frequency that is independent of the speed of the z-axis scan. This can also be useful for cases where the z speed is zero, as in \begin{em}en-face\end{em} OCT. \cite{bouma} \cite{hitzenberger}
 
@@ -116,7 +116,7 @@ In some cases, it is desirable to have a higher carrier frequency, or a carrier 
 \caption{Light scatters off of acoustic waves in a quartz crystal, changing both frequency and angle.}
 \end{figure}
 
-Acousto optic modulators (AOMs) are crystals, typically quartz, that use acousto-optic effect to shift the frequency of light. A transducer establishes an acoustic standing wave at RF frequencies inside the crystal. Compression waves in the crystal can be modeled as gradients in the refractive index. Light incident upon these refractive index gradients will be scattered. \cite{haus}
+Acousto optic modulators (AOMs) are crystals, typically quartz, that use the acousto-optic effect to shift the frequency of light. A transducer establishes an acoustic standing wave at RF frequencies inside the crystal. Compression waves in the crystal can be modeled as gradients in the refractive index. Light incident upon these refractive index gradients will be scattered. \cite{haus}
 
 \begin{figure}[h!]
 \centering
@@ -157,8 +157,8 @@ The interference between these two fields creates a beat frequency, with the opt
 \begin{align}
 E_a(t) + E_b(t) = & E_a e^{2 \pi ftj} + E_b e^{2 \pi (f + F)t j} \\
 = & E_a e^{2 \pi ft j} + E_b (e^{2 \pi ftj} e^{2 \pi Ftj}) \\
-= & e^{2 \pi ftj} (E_a + E_b e^{2 \pi Ftj}) \\
-= & E_a(t) (1 + \frac{E_a}{E_b} e^{2 \pi Ftj})
+= & E_a e^{2 \pi ftj} (1 + \frac{E_b}{E_a} e^{2 \pi Ftj}) \\
+= & E_a(t) (1 + \frac{E_b}{E_a} e^{2 \pi Ftj})
 \end{align}
 
 The RF frequency $F$ used to drive the AOMs is typically on the order of 40-200 MHz. For many applications, this is a higher carrier frequency than desired. In this case, it is possible to use two AOMs to generate an even lower frequency carrier, by driving them at slightly different RF frequencies.
@@ -173,17 +173,15 @@ It can be seen via an identical simplification to the above that the combination
 \section{Doppler OCT with AOMs}
 \label{sec:doppler_aom}
 
-Scattering off of moving particles induces a change in the frequency of scattered light.
-
 %% more equations/background
 
-Excitations and movements of interest are typically sinusoidal in the applications of this OCT device. The instaneous velocity of the scattering media can therefore be written as follows, where $A_o$ is the amplitude of motion and $\omega$ is the acoustic frequency of excitation.
+Physical excitations and movements of interest in tissues are typically sinusoidal in the applications of this OCT device. The instaneous velocity of the scattering media can therefore be written as follows, where $A_o$ is the amplitude of motion and $\omega$ is the acoustic frequency of excitation.
 
 \begin{equation} \label{eq:media_v}
 v(t) = A_o \cos{(\omega t)}
 \end{equation}
 
-This produces a frequency shift.
+Light scattering off of moving particles induces a change in the frequency of scattered light, due to the doppler effect.
 
 %% more equations / background
 
@@ -232,7 +230,7 @@ This is equivalent to frequency modulation, with the periodic change in frequenc
 f' \left( \frac{A_o \cos{\omega t}}{c} \right)
 \end{equation}
 
-This oscillation can be extracted from the captured signal using the Hilbert transform, as discussed in Section \ref{sec:sigproc_mo_anal}.
+This oscillation can be extracted from the captured signal using the Hilbert transform, as discussed in Section \ref{sec:sigproc_mo_anal}. While this derivation assumed perfectly monochromatic light sources, as would be the case in an ideal laser interferometer, the general result extends to the non-monochromatic random signals used in Section~\ref{sec:principles_oct}.
 
 \section{Signal processing}
 
@@ -255,7 +253,7 @@ This oscillation can be extracted from the captured signal using the Hilbert tra
     \path [line] (dbpf) -- (hilb);
     \path [line] (hilb) -- (ds);
 \end{tikzpicture}
-\caption{Basic OCT signal processing chain. The bandpass filter is centered around the carrier frequency from equation \ref{eq:carrier}. The demodulator either can be as straightforward as an envelope follower or a Hilbert transform based analytic continuation.}
+\caption[Basic OCT signal processing chain.]{Basic OCT signal processing chain. The bandpass filter is centered around the carrier frequency from equation \ref{eq:carrier}. The demodulator either can be as straightforward as an envelope follower or a Hilbert transform based analytic continuation.}
 \end{figure}
 
 Prior to analog-to-digital conversion, analog bandpass filters select for the carrier frequency and its sidebands.
@@ -278,14 +276,14 @@ It can therefore be seen that the envelope component of the signal can be calcul
 A(t) \approx \sqrt{(x(t))^2 + H(x(t))^2}
 \end{equation}
 
-The envelope, which does need the high sampling rate previously required in order to capture the carrier frequency, can then be downsampled to the resolution required by the imaging application.
+The envelope, which does need the high sampling rate previously required in order to capture the carrier frequency, can then be low pass filtered and decimated to the resolution required by the imaging application.
 
 \subsection{Analyzing motion}
 \label{sec:sigproc_mo_anal}
 
 %As the reference signal $V_{ref}$ is at exactly half the frequency of the captured heterodyne signal $V_{het}$, the following equation gives the instantaneous difference in phase.
 
-As we showed in Section \ref{sec:doppler_aom}, the phase of the amplitude of light scattered off of media moving periodically, which we will refer to as the heterodyne signal, $V_{\mathrm{het}}$, can be expressed as follows.
+As we showed in Section \ref{sec:doppler_aom}, the phase of the amplitude of light scattered from media moving periodically, which we will refer to as the heterodyne signal, $V_{\mathrm{het}}$, can be expressed as follows.
 
 \begin{equation}
 \phi_{\mathrm{het}}(t) = 2 \pi t \left(\Delta F + f' \left( \frac{A_o \cos{\omega t}}{c} \right)   \right) + \phi_{\mathrm{offset}}
@@ -312,16 +310,16 @@ Therefore, the instantaneous phase difference between the heterodyne signal and 
 Substituting in from Equation \ref{eq:phase_aom_doppler}, with $c$ replaced by $c/n$ to account for the refractive index of the media.
 
 \begin{equation}
-\phi_{\mathrm{het}}(t) - 2 \phi_{\mathrm{ref}}(t) = 2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right) + \phi_{\mathrm{offset}}
+\phi_{\mathrm{het}}(t) - 2 \phi_{\mathrm{ref}}(t) = 2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right)
 \end{equation}
 
-Because the RF frequency $F_1 << f$, the optical frequency, we can approximate $f' = f + F_1 \approx f$, and simplify the equation above. The equation can be made simpler still by simplifying to a wavenumber.
+Because the RF frequency $F_1 << f$, the optical frequency, we can approximate $f' = f + F_1 \approx f$, and simplify the equation above. The equation can be made simpler still by expressing the optical frequency as a wavenumber.
 
 \begin{equation}
-2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right) + \phi_{\mathrm{offset}} \approx k n A_o \cos{\omega t} + \phi_{\mathrm{offset}}
+2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right) \approx k n A_o \cos{\omega t}
 \end{equation}
 
-The constant offset term may be subtracted off, and consequently the displacement of the sample, $D(t)$ may be calculated.
+Consequently, the periodic displacement of the sample, $D(t)$ may be calculated.
 
 % ??? Where does Stan's factor of two come from?
 
