@@ -22,7 +22,9 @@ The mammilian cochlea is capable of remarkable sensory perception. It can distin
       \label{fig:cochlea}
 \end{figure}
 
-A tissue of particular interest in the cochlea is the tectorial membrane, which is in direct contact with the hair cells, as shown in Figure \ref{fig:cochlea}. This tissue has some interesting mechanical properties, and its position in relation to the sensory cells suggests it could play in active role in motion amplification or in frequency discrimination. However, as it is almost entirely water, it is very difficult to image with conventional imaging techniques. \cite{needcitation}
+A tissue of particular interest in the cochlea is the tectorial membrane, which is in direct contact with the hair cells, as shown in Figure \ref{fig:cochlea}. This tissue's proximity to the sensory cells, and its interesting mechanical properties, including frequency-sensitive acoustic wave propogation, suggest that it could play an active role in auditory frequency discrimination and motion amplification. \cite{Ghaffari2010}
+
+%However, as it is almost entirely water, it is very difficult to image with conventional imaging techniques. \cite{needcitation}
 
 A technique known as optical coherence tomography allows three-dimensional imaging into tissues such as the tectorial membrane, by making use of the auto-correlation properties of temporally incoherent light. When used with a high NA lens for high resolution transverse imaging, the technique is also known as optical coherence microscopy. This technique can image deeper into tissues than other three-dimensional imaging methods such as confocal microscopy. Furthermore, OCT allows for measurement of motion, both constant and periodic. \cite{DrexlerBook}
 
@@ -32,7 +34,7 @@ The Hong system is designed around free space optics that have been carefully al
 
 The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic (FO) coupled components. Therefore, it will be hereafter reffered to as the FO-DOCM system. Fiber optics can be more compact, and are almost insensitive to movement or changes in physical shape (one notable exception to this is polarization sensitivity, which will be discussed in Chapter 2). Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for a variable angle optical axis, and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
 
-Additionally, the FO-DOCM system uses a longer wavelength of light than the Hong system, 1310nm IR instead of 800nm IR. While this has some disadvantages in terms of axial resolution capability, as discussed in Section \ref{sec:axial_res}, this wavelength also has several advantages. It is commonly used for comm that has significantly reduced scattering through bone tissue, and therefore greater transmission. This has the potential to obviate the current need to image through either the round window or a hole cut in the cochlear apex. \cite{needcitation}
+Additionally, the FO-DOCM system uses a longer wavelength of light than the Hong system, 1310nm IR instead of 800nm IR. While this has some disadvantages in terms of axial resolution capability, as discussed in Section \ref{sec:axial_res}, this wavelength also has several advantages.It is a commonly used wavelength for communication applications, and therefore many optical components are designed for compatibility in this region. More importantly, 1310nm has significantly reduced scattering through bone tissue, therefore allowing for greater transmission and penetration. This has the potential to obviate the current need to image through either the cochlear round window or a hole cut in the cochlear apex. \cite{Sandell2011} \cite{Bashkatov2006}
 
 \section{Principle of operation of time domain OCT}
 \label{sec:principles_oct}
@@ -41,20 +43,19 @@ Throughout this document, the coordinate axis parallel to the direction of light
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{Images/Background/axes.png}
+\includegraphics[width=0.4\textwidth]{Images/Background/axes.png}
 \caption{Definition of axes.\label{fig:axis_def}}
 \end{figure}
 
 \begin{figure}[h!]
   \centering
-    \includegraphics[width=0.5\textwidth]{Images/Background/basic_oct.png}
+    \includegraphics[width=0.6\textwidth]{Images/Background/basic_oct.png}
       \caption{A schematic of a basic OCT system.\label{fig:basic_oct}}
 \end{figure}
 
-
 OCT functions by utilizing the principle of the Michelson interferometer, as shown in Figure~\ref{fig:basic_oct}. Light is split into two beams. One is reflected from a mirror, the other is scattered from a biological sample. The light is then recombined and the intensity measured by a photodetector. When the optical path lengths of the two beams are closely matched, an interference pattern may be observed. By using temporally incoherent (broadband) light, the interference pattern is capable of absolute localization.
 
-The electric field from a temporally incoherent source can be modeled accurately as a wide-sense stationary random process with a power spectral density corresponding to the optical spectrum of the source. \cite{Bouma} In the case where the scattering sample is replaced by a reflecting mirror, the mathematical analysis may be simplified greatly by assuming that the system is analyzing the interference of this random process with itself, delayed by the optical path length difference. From this, we show that interference is the same as autocorrelation, and make use of the Wiener-Khinchin theorem. This derivation follows closely that of Fercher et. al. \cite{fercher}
+The electric field from a temporally incoherent source can be modeled accurately as a wide-sense stationary random process with a power spectral density corresponding to the optical spectrum of the source. \cite{bouma} In the case where the scattering sample is replaced by a reflecting mirror, the mathematical analysis may be simplified greatly by assuming that the system is analyzing the interference of this random process with itself, delayed by the optical path length difference. From this, we show that interference is the same as autocorrelation, and make use of the Wiener-Khinchin theorem. This derivation follows closely that of Fercher et. al. \cite{fercher}
 
 The intensity of light with analytic (complex) amplitude $V(t)$ is defined as:
 
@@ -329,16 +330,14 @@ D(t) = \frac{1}{kn} \phi(t)
 
 \section{Related work}
 
-As mentioned in Section \ref{sec:intro}, much of this research is an extension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong} Hong's work is quite similar to this thesis, but is also different in several ways: the use of free space optics rather than fiber optic components, the use of a shorter wavelength source, and, most importantly, the revised alignment and positioning apparatus. Similar data and reuslts to that in \cite{hong} have been collected as part of this thesis, and may be compared directly.
+As mentioned in Section \ref{sec:intro}, much of this research is an extension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong} Hong's work is quite similar to this thesis, but is also different in several ways: the use of free space optics rather than fiber optic components, the use of a shorter wavelength source, and, most importantly, the revised alignment and positioning apparatus. Similar data and results to that in \cite{hong} have been collected as part of this thesis, and may be compared directly. Additionally, the FO-DOCM system allows for continuous scanning of lines in an image, rather than point-by-point pixel acquisition.
 
 %Why time domain? This differentiates our work? Can I spin it positively?
 
-Some work has been done, for instance by H. Subhash et. al. in the field of spectral domain doppler OCT. \cite{Subhash2012} In order to detect motion, the system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they induce. Unfortunately, Subhash et. al. did not provide sensitivity results to compare against, but it is theorized that a time domain approach can result in higher resolution motion measurements, though at the considerable expense of requiring physical motion to scan the z-axis.
-
-Choudhury et. al. have also performed work with spectral domain doppler OCT in 2011. They achieved results with an axial resolution of 13 microns and a motion detection noise floor of 300 pm. \cite{Choudhury2011} % The FO-DOCM system is shown to be competitive with these results.
+While the FO-DOCM project uses time-domain doppler OCT, work has also been done in the field of spectral domain doppler OCT. \cite{Choudhury2011} \cite{Subhash2012} In order to detect motion, a spectral-domain OCT system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they induce. It is theorized that a time domain approach can result in higher resolution motion measurements, as a monolithic photodiode has better noise equivalent power then does a CCD line camera with a diffraction grating. However, the use of a time-domain system adds the considerable expense of requiring physical motion to scan the z-axis, resulting in significantly slower image acquisition. Spectral-domain doppler OCT systems have achieved results with an axial resolution of 13 microns and a motion detection noise floor of 300 pm. \cite{Choudhury2011}  % The FO-DOCM system is shown to be competitive with these results.
 
 From an optical perspective, there are other researchers that have used GRIN lens optics as an endoscopic objective lens, for instance T. Xie et. al. in 2006. \cite{Xie2006} Their research used a spectral domain technique and involved a much larger GRIN rod that could be handheld.
 
-This work also continues the active effort of minimizing the size of OCT apparatus, for example the work of B. Goldberg et. al. in the creation of a miniature swept frequency laser source for OCT imaging. \cite{Goldberg2009}
+As one of the benefits of the FO-DOCM system to the Micromechanics Group is its smaller size, this work may be seen as continuing the active effort of minimizing the size of the OCT apparatus. For example, B. Goldberg et. al. have researched the creation of a miniature swept frequency laser source for OCT imaging. \cite{Goldberg2009}
 
-Also of interest in the development of this system, and still a developing technique, is the use of algorithms and more sophisticated signal processing to improve the image quality and resolution ability of captured OCT data. Of significant interest is the possibility of correcting for dispersive effects caused by the propogation of light through the sample media. \cite{Xie2005} \cite{DrexlerBook} These techniques could also potentially be used to correct for dispersion caused by fiber length mismatch.
+Also of interest in the development of this system, and still a developing technique, is the use of algorithms and more sophisticated signal processing to improve the image quality and resolution ability of captured OCT data. Of significant interest is the possibility of correcting for dispersive effects caused by the propogation of light through the sample media. \cite{Xie2005} \cite{DrexlerBook} These techniques could also potentially be used to correct for dispersion caused by fiber length mismatch between the reference and sample paths, as discussed in Section~\ref{sec:reference_path}.
