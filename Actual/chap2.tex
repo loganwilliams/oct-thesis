@@ -1,3 +1,4 @@
+
 \chapter{System design}
 
 In this chapter, the major components of the fiber optic doppler optical coherence microscopy system will be introduced, and the design constraints that led to their choice will be examined. The mechanical and optical design will be detailed. Finally, predictions of system performance will be made based on component choices.
@@ -6,53 +7,57 @@ In this chapter, the major components of the fiber optic doppler optical coheren
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.1\textwidth]{Images/Background/actual_system_vertical.png}
+\includegraphics[width=1.0\textwidth]{Images/Background/actual_system_vertical.png}
 \caption{Block diagram of the FO-DOCM system.}
 \end{figure}
 
 \subsection{Incoherent light source}
 
-The choice of a light source dictates many aspects of the system performance. The coherence length, as shown in Section~\ref{sec:principles_oct}, controls the axial resolution of the imaging. The center wavelength of the source constrains other components that may be used in the system, the achievable penetration depth, and what tissues may be penetrated, as discussed in Section~\ref{sec:bone}.
+The choice of a light source dictates many aspects of the system performance. The coherence length, as shown in Section~\ref{sec:principles_oct}, controls the axial resolution of the imaging. The center wavelength of the source constrains other components that may be used in the system, and the penetration depth.
 
 For this project,  a super-luminescent diode, or SLD, was choosen (Exalos AG, Switzerland). Super luminescent diodes provide the spatial coherence of a laser with the temporal incoherence (therefore, short coherence length) of an LED or ``white'' light source. Other common white-light sources for OCT applications include solid-state lasers, such as Ti: Al$_2$O$_3$ lasers, lasers that sweep a frequency range in time (so called, ``swept-spectrum'' lasers), and femtosecond lasers. The chief advantage of an SLD over these options is reduced cost and complexity. \cite{bouma}
 
 A center wavelenght of 1310 nm was choosen as this is a common wavelength for communications. It is therefore possible to find many inexpensive fiber coupled components designed to operate in this band. Additionally, as discussed in Section \ref{sec:intro}, a longer wavelength could allow for deeper penetration through the bony cochlear wall. \cite{Sandell2011} \cite{Bashkatov2006}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{ >{\bf}r | l}
-Part number & Exalos EXS210045-01 \\
-Center wavelength & 1310 nm \\
-FWHM Bandwidth & 100 nm \\
-Coherence length & 7.57 $\mu$m \\
-Power & 10 mW \\
-Price & \$1800, \$900 driver \\
-\end{tabular}
-\caption{Specifications for the optical source.}
-\end{table} 
+An optical isolator is required after the SLD in order to prevent resonance caused by back-reflections from affecting the spectral width of the source.
+
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{ >{\bf}r | l}
+% Part number & Exalos EXS210045-01 \\
+% Center wavelength & 1310 nm \\
+% FWHM Bandwidth & 100 nm \\
+% Coherence length & 7.57 $\mu$m \\
+% Power & 10 mW \\
+% Price & \$1800, \$900 driver \\
+% \end{tabular}
+% \caption{Specifications for the optical source.}
+% \end{table} 
 
 \subsection{Acousto-optic modulators}
 
-Two Gooch \& Housego acousto-optic modulators were choosen. Sintec Optronics packages these AOMs in a fiber coupled enclosed package, which avoided the need for alignment with the first degree deflection beam, and provides a convenient, compact device. An 80 MHz drive frequency was choosen for compatibility with existing hardware used in the Micromechanics group. Detailed specifications for this device are shown in Table 2.2.
+Two fiber coupled acousto-optic modulators (Gooch \& Housego, United Kingdom; packaged by Sintec Optronics, Singapore. Part No: 23080-1-1.3-LTD-FC/APC) were choosen, which avoided the need for alignment with the first degree deflection beam, and provides a convenient, compact device. An 80 MHz drive frequency was choosen for compatibility with existing hardware used in the Micromechanics group. %Detailed specifications for this device are shown in Table 2.2.
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{ >{\bf}r | l}
-Part number & \\
-Center wavelength & 1310 nm \\
--3dB Bandwidth & 100 nm \\
-Drive frequency & 80 MHz \\
-Drive power & 1.5 W \\
-Price & 2, at \$1500 each \\
-\end{tabular}
-\caption{Specifications for the acousto-optic modulator.}
-\end{table} 
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{ >{\bf}r | l}
+% Part number & \\
+% Center wavelength & 1310 nm \\
+% -3dB Bandwidth & 100 nm \\
+% Drive frequency & 80 MHz \\
+% Drive power & 1.5 W \\
+% Price & 2, at \$1500 each \\
+% \end{tabular}
+% \caption{Specifications for the acousto-optic modulator.}
+% \end{table} 
 
 \subsection{RF Generation and Driving}
 
-The AOMs need to be driven by an 80 Mhz and an 80.25 MHz RF signal in order to produce the beat frequency derived in Section \ref{sec:aom_carrier}.
+The AOMs need to be driven by an 80 Mhz and an 80.25 MHz RF signal in order to produce the beat frequency derived in Section \ref{sec:aom_carrier}. A frequency synthesizer, built by Stanley Hong \cite{hong}, uses a 1 GHz clock source to synthesize a 80.25 MHz signal and an 80 MHz signal. The difference between these, a 250 KHz beat signal, is also generated, as it is necessary for later signal processing steps.
 
-A 1GHz clock is generated by a Fox Electronics XpressO LVPECL oscillator (part number FXO–PC536R-1000). An output of +13 dbM was measured at $50\Omega$. This oscillator and the small amount of supporting electrical hardware required was packed in an enclosure and connected to a BNC output.
+Two RF amplifiers, (Mini Circuits, United States. Part No: ZHL-3A) amplify the RF signals +29.5 dBm to +32 dBm (approximately 1.5 Watts), the maximum drive power of the AOMs.
+
+The 1GHz clock is generated by a small integrated oscillator (Fox Electronics, United States. Part No: FXO–PC536R-1000). An output of +13 dbM was measured at $50\Omega$, sufficient for driving the frequency synthesizer. This oscillator and the small amount of supporting electrical hardware required was packed in an enclosure and connected to a BNC output.
 
 %% Schematic of 1Ghz oscillator
 \begin{figure}[h!]
@@ -60,10 +65,6 @@ A 1GHz clock is generated by a Fox Electronics XpressO LVPECL oscillator (part n
 \includegraphics[width=0.75\textwidth]{Images/Schematics/1ghzclock_2.png}
 \caption[Schematic of the 1Ghz clock.]{Schematic of the 1 GHz clock. J1 is the 1 GHz output.}
 \end{figure}
-
-A frequency synthesizer, built by Stanley Hong \cite{hong}, uses this 1 GHz clock to synthesize a 80.25 MHz signal and an 80 MHz signal. The difference between these, a 250 Khz signal, is also generated, as it is necessary for signal processing.
-
-Two RF amplifiers, purchased from Mini-Circuits (model ZHL-3A) amplify the RF signals +29.5 dBm to +32 dBm (approximately 1.5 Watts), the maximum drive power of the AOMs.
 
 \subsection{Reference path}
 \label{sec:reference_path}
@@ -77,7 +78,7 @@ This setup was simulated with Zemax, as shown in Figure \ref{fig:reference_zemax
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.75\textwidth]{Images/Zemax/RP-raytrace.png}
-\caption[Zemax raytrace simulation of reference path.]{Zemax raytrace simulation of reference path. Note that the vertical axis has been enlarged by 20$\times$.}
+\caption[Zemax raytrace simulation of reference path.]{Zemax raytrace simulation of reference path. Note that the vertical axis is enlarged by 20$\times$, and that the mirror is represented by duplicating and reversing the optical system about the center.\label{fig:reference_zemax}}
 \end{figure}
 
 The retroreflector was mounted on a non-motorized, single axis micropositioning stage, allowing the reference path length to be adjusted so that it aligns with the focal point of the sample path.
@@ -136,13 +137,21 @@ A working distance of 2 mm was choosen, resulting in a transverse resolution lim
 
 %% solidworks images and mechanical design discussion
 
+% \begin{figure}[h!]
+% \centering
+% \caption[3D model of the mechanical alignment apparatus.]{A 3D model of the mechanical alignment apparatus. 1) Vertical adjustment slider. 2) Horizontal adjustment slider. 3) Angular adjustment slider. 4) GRIN objective lens. 5) Z-axis piezo stage. 6) Digital microscope.}
+% \end{figure}
+
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.6\textwidth]{Images/Alignment/new_d_2_ann.png}
-\caption[SolidWorks model of the mechanical alignment apparatus.]{A SolidWorks model of the mechanical alignment apparatus. 1) Vertical adjustment slider. 2) Horizontal adjustment slider. 3) Angular adjustment slider. 4) GRIN objective lens. 5) Z-axis piezo stage. 6) Digital microscope.}
+\\[1em]
+\includegraphics[width=0.7\textwidth]{Images/Photographs/DSCF1696_an.jpg}
+\caption[3D model and photograph of the mechanical alignment apparatus.]{A 3D model and a  photograph of the mechanical alignment apparatus. 1) Vertical adjustment slider. 2) Horizontal adjustment slider. 3) Angular adjustment slider. 4) GRIN objective lens. 5) Z-axis piezo stage. 6) Digital microscope.\label{fig:alignment_overview}}
 \end{figure}
 
-The sample alignment apparatus is a mechanical device designed to accomplish several goals:
+
+The sample alignment apparatus, pictured in Figure~\ref{fig:alignment_overview}, is a mechanical device designed to accomplish several goals:
 
 \begin{itemize}
 	\item Securely hold the GRIN objective lens
@@ -153,7 +162,13 @@ The sample alignment apparatus is a mechanical device designed to accomplish sev
 	\item Hold a small digital microscope for visual inspection of alignment
 \end{itemize}
 
-\subsection{Mechanical device for adjusting angle}
+\subsection{Mechanical device for adjusting angle and position}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\textwidth]{Images/System/angle_a.png}
+\caption[Side view of the alignment apparatus.]{Side view of the alignment apparatus. This more clearly shows the mechanisms for adjusting position and angle.}
+\end{figure}
 
 To control the angle, the z-stage is mounted on a horizontal aluminum cantilever, with two circularly concentric slots cut out. By screwing the stage mounting block into the slots, the angle can be adjusted around a fixed point. When the system is configured such that it is focused on this point, the operator is able to change the angle of axial movement without changing the current focal point, a helpful feature for alignment.
 
@@ -165,79 +180,90 @@ To control the angle, the z-stage is mounted on a horizontal aluminum cantilever
 
 The cantilever part was designed in SolidWorks and then milled on a CNC machine in the Edgerton Center Student Shop.
 
-An L-shaped part was designed to hold the horizontal cantilever. Later, a vertical part was added to enable continuous adjustment of cantilever height, and to allow for a higher maximum height, necessary as a result of the clearance requirements of the Prior axial stage. These parts were milled by hand at the Edgerton Center Student Shop.
+An L-shaped part was designed to hold the horizontal cantilever. Later, a vertical part was added to enable continuous adjustment of cantilever height, and to allow for a higher maximum height, necessary as a result of the clearance requirements of the 2D transverse stage. These parts were milled by hand at the Edgerton Center Student Shop.
 
 \subsection{Piezo motor stage for axial movement}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.48\textwidth]{Images/System/z-stage.jpg}
-\caption{The piezo motor stage with controller.}
-\end{figure}
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.48\textwidth]{Images/System/z-stage.jpg}
+% \caption{The piezo motor stage with controller.}
+% \end{figure}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{ >{\bf}r | l}
-Part number & CONEX-AG-LS25-27P\\
-Travel range & 27mm  \\
-Repeatability & 200 nm \\
-Speed & 0.4mm / sec \\
-Minimum incremental motion & 200nm \\
-Price & \$1725 \\
-\end{tabular}
-\caption{Specifications for the axial piezo motor stage.}
-\end{table}
-
-To control $z$-axis scanning, a piezo-electric motorized stage was used. This stage uses an ``inchworm'' like drive method to control motion, and uses motion encoders with closed loop feedback to provide repeatable movements of up to 200 nm.
-
-Unfortunately, this stage also has some drawbacks for an OCT application. Though the closed loop feedback allows for the stage to move precisely to any location, it's speed is not consistent during the motion. As a result, it is necessary to re-interpolate the data collected based on the actual position of the stage as it scans. This is discussed further in the signal processing section, Section \ref{sec:sig_proc}.
-
-To capture information about the realtime position of the stage two approaches were used. The first involved repeatedly querieing the CONEX stage driver over TTY serial. While this was straightforward to accomplish and within the bounds of normal operation of the stage, it did not provide high enough resolution (in time) of the stages' position.
-
-The second approach involved adding analog output from the stage encoder that could be captured by the analog-to-digital converter simultaneously with the interferometry signal. This involved ``hacking'' % should I use this word?
-the controller.
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{ >{\bf}r | l}
+% Part number & CONEX-AG-LS25-27P\\
+% Travel range & 27mm  \\
+% Repeatability & 200 nm \\
+% Speed & 0.4mm / sec \\
+% Minimum incremental motion & 200nm \\
+% Price & \$1725 \\
+% \end{tabular}
+% \caption{Specifications for the axial piezo motor stage.}
+% \end{table}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.48\textwidth]{Images/Alignment/angle_bracket2.png}
-\includegraphics[width=0.48\textwidth]{Images/Alignment/angle_bracket.jpg}
-\caption{This angled bracket mounts the piezo-motor stage to the horizontal cantilever shown above. The image on the right shows the bracket prior to the addition of stabilization bolts.}
+\includegraphics[width=0.75\textwidth]{Images/Photographs/DSCF1714_an.jpg}
+\caption[Photograph of the piezo motion stage.]{A photograph of the piezo motion stage. 1) Piezoelectric motorized stage. 2) `L'-backet to mount piezo stage. 3) `S'-bracket to mount GRIN lens. 4) GRIN lens `V'-clamp.}
 \end{figure}
+
+To control $z$-axis scanning, a piezo-electric motorized stage was used (Newport, Inc., United States. Part No: CONEX-AG-LS25-27P). This stage uses an ``inchworm'' like drive method to control motion, and uses motion encoders with closed loop feedback to provide repeatable movements of up to 200 nm.
+
+Unfortunately, this stage also has some drawbacks for an OCT application. Though the closed loop feedback allows for the stage to move precisely to any location, it's speed is not consistent during the motion. As a result, it is necessary to either collect data pixel-by-pixel or to re-interpolate the data collected based on the actual position of the stage as it scans. These methods, and their advantages and drawbacks, are discussed further in the signal processing section, Section~\ref{sec:sig_proc}.
+
+To capture information about the realtime position of the stage two approaches were used. The first involved repeatedly querieing the CONEX stage driver over TTY serial. While this was straightforward to accomplish and within the bounds of normal operation of the stage, it did not provide high enough resolution (in time) of the stages' position. The second approach involved adding analog output from the stage encoder that could be captured by the analog-to-digital converter simultaneously with the interferometry signal. This involved extracting the quadrature encoder signal from the controller directly. A custom board was fabircated to add BNC encoder outputs to the controller.
+
+The piezo stage was mounted to the angle adjustment apparatus by fabricating a custom mounting plate designed for the hole spacing on the stage. The plate is also designed as an `L' shape, so that the GRIN lens is in the radial direction of the angle adjustment arc.
+
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.48\textwidth]{Images/Alignment/angle_bracket2.png}
+% \includegraphics[width=0.48\textwidth]{Images/Alignment/angle_bracket.jpg}
+% \caption{This angled bracket mounts the piezo-motor stage to the horizontal cantilever shown above. The image on the right shows the bracket prior to the addition of stabilization bolts.}
+% \end{figure}
 
 \subsection{Mounting the fiber and GRIN lens}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.75\textwidth]{Images/Alignment/mounting_plate.png}
-\caption{This mounting bracket fastened to the z-stage and allowed the installation of a Thorlabs V-clamp.}
+\includegraphics[width=0.75\textwidth]{Images/Alignment/close_up.png}
+\caption[A close up view of the GRIN objective mounting apparatus.]{A close up view of the GRIN objective mounting apparatus. 1) The GRIN objective. 2) A brass extension rod used to lower the GRIN lens. 3) The V-clamp. 4) The digital microscope. 5) Optical fiber (truncated in image.) 6) Mounting plate.}
 \end{figure}
 
-To hold the fiber and its objective GRIN lens, a Thorlabs V-clamp was used. A custom part was designed in SolidWorks to connect to the piezo stage, allow the V-clamp to be mounted, and also to allow the digital microscope to be installed such that it could image the focal point of the GRIN lens. This part was designed in SolidWorks, and then milled by hand in the Edgerton Center Student Shop.
+To hold the GRIN lens at a sufficient distance from the stage, and with minimal bulk, a small brass rod was adhered with Norland Optical Adhesive 68 to the outer glass tube in the GRIN lens assembly. A V-clamp was used to firmly hold the brass rod in place. A custom mounting plate was designed and milled to connect to the piezo stage, allow the V-clamp to be mounted, and also to allow the digital microscope to be installed such that it could image the focal point of the GRIN lens. Note that without the brass extension rod, the end of the GRIN lens would be blocked from the view of the microscope by the V-clamp and supporting hardware.
 
 \subsection{Digital microscope for visual alignment}
 
 %% Image of final microscope
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{Images/Photographs/DSCF1699_an.jpg}
+\caption[An overview of the digital alignment microscope.]{An oveview of the digital alignment microscope. 1) LED illumination source. 2) Mounting bracket (position adjustment). 3) Lens tube. 4) USB Webcam CCD.}
+\end{figure}
+
 In order to aid the alignment process, an optical microscope, with a digital CCD view finder, was constructed to observe the region imaged by the OCT process.
 
 The design required a relatively large working distance (and correspondingly low numerical aperture), to allow the microscope to have an angle as close to the optical axis of the OCT objective lens as possible.
 
-A CCD sensor from a Microsoft Xbox Live Vision web camera was used, due to its compact size, low cost, and use of the standard USB Video Class protocol (compatible with MATLAB and other image capture applications.) As the CCD has a quite small size, approximately 3x5mm (actual dimension specifications are not available), a low magnification was sufficient.
+A CCD sensor from a USB web camera (Microsoft, United States. Part No: Xbox Live Vision) was used, due to its compact size, low cost, and use of the standard USB Video Class protocol (compatible with MATLAB and other image capture applications.) As the CCD has a quite small size, approximately 3x5mm (actual dimension specifications are not available), a low magnification was sufficient.
 
 A MATLAB program was ued to optimize the working distance, while keeping the overall optical length within reasonable limits, and while working with a set of easily obtainable lenses, using a simple paraxial lens approximation. From this MATLAB program, a Zemax simulation model was constructed, using accurate models of the actual lenses from which the microscope would be constructed.
 
-The microscope is composed of three lenses in two groups -- a 15mm spherical doublet (Edmund 45209) and a 20mm spherical singlet (Thorlabs LA1074). The lenses are mounted in $1/2$ inch $\diameter$ lens tubes. A 4mm diameter aperture, laser cut from opaque acrylic, was used to further reduce the pupil size, improving image quality at the cost of reducing light intensity.
+The microscope is composed of three lenses in two groups -- a 15mm spherical doublet (Edmund Optics, United States. Part No: 45209) and a 20mm spherical singlet (Thorlabs, United States. Part No: LA1074). The lenses are mounted in $1/2$ inch $\diameter$ lens tubes. A 4mm diameter aperture, laser cut from opaque acrylic, was used to further reduce the pupil size, improving image quality at the cost of reducing light intensity.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.8\textwidth]{Images/Microscope/microscope_layout_3.png}
+\includegraphics[width=0.6\textwidth]{Images/Zemax/microscope_layout_2.png}
 \caption{A raytrace diagram of the microscope layout, simulated in Zemax.}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.8\textwidth]{Images/Microscope/microscope_psf.png}
-\caption[The point spread function of the microscope, as simulated in Zemax.]{The point spread function of the microscope, as simulated in Zemax. Note the actual performance was slightly better than in the simulation.}
+\includegraphics[width=0.6\textwidth]{Images/Zemax/microscope_psf_2.png}
+\caption[The point spread function of the microscope, as simulated in Zemax.]{The point spread function of the microscope, as simulated in Zemax.}
 \end{figure}
 
 The performance was tested using a 1961 USAF Resolution Test Target, which showed that the microscope could resolve features down to 7.8 microns wide, and had a field of view of 1.16 mm $\times$ 0.87 mm, for a magnification of approximately 4$\times$.
@@ -259,34 +285,46 @@ The spectral responsivity of a silicon photo-sensor, like that used in the digit
 
 For this purpose, an inexpensive 650nm laser diode is used. The output of the diode is collimated and coupled into an SMF-28e+ optical fiber, which can be attached through a FC-APC connector directly to the GRIN lens. This produces a highly visible laser spot that is helpful for aligning the start of an OCT scan.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/missing.png}
+\caption[An image of the visible laser spot on cochlear tissue.]{An image of the visible laser spot on cochlear tissue, captured by the digital microscope.}
+\end{figure}
+
 %% Image of laser spot
 
 \section{X-Y stage for sample movement}
 
-To move in the transverse plane, the sample is placed on a stepper motor driven two axis stage. For this purpose, a Prior H101BX stage was used. While this stage is designed for use on a conventional upright microscope, some custom mounting hardware was designed and manufactured to allow it to stand freely. The stage is driven by a Prior H128 controller, which accepts commands over a serial port. Full specifications are in Table 2.4.
-
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.75\textwidth]{Images/Alignment/x-y-mount.png}
-\caption[The mounting plate that allows the Prior H101B microscope stage to stand freely.]{The mounting plate that allows the Prior H101B microscope stage to stand freely. This was fabricated by laser cutting acrylic.}
+\includegraphics[width=0.75\textwidth]{Images/Photographs/DSCF1722_an.jpg}
+\caption[The transverse X-Y stepper motor stage.]{The transverse X-Y stepper motor stage. 1) The laser-cut mounting platform. 2) The Prior H101 stage. 3) The laser-cut mountaing plate.}
 \end{figure}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{ >{\bf}r | l}
-Part number & Prior H101BX \\
-Travel range & 115 x 77 mm \\
-Incremental step size & 40 nm \\
-Bidirectional repeatability & 800 nm \\
-Motor type & 200 Series Stepper \\
-\end{tabular}
-\caption{Specifications for the X-Y stage.}
-\end{table} 
+To move in the transverse plane, the sample is placed on a stepper motor driven two axis stage (Prior Scientific Ltd., Japan. Part No: H101BX). While this stage is designed for use on a conventional upright microscope, some custom mounting hardware was designed and manufactured to allow it to stand freely. The stage is driven by a stepper controller, which accepts commands over a serial port (Prior Scientific Ltd., Japan. Part No: H128V). Full specifications are in Table 2.4.
+
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.75\textwidth]{Images/Alignment/x-y-mount.png}
+% \caption[The mounting plate that allows the Prior H101B microscope stage to stand freely.]{The mounting plate that allows the Prior H101B microscope stage to stand freely. This was fabricated by laser cutting acrylic.}
+% \end{figure}
+
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{ >{\bf}r | l}
+% Part number & Prior H101BX \\
+% Travel range & 115 x 77 mm \\
+% Incremental step size & 40 nm \\
+% Bidirectional repeatability & 800 nm \\
+% Motor type & 200 Series Stepper \\
+% \end{tabular}
+% \caption{Specifications for the X-Y stage.}
+% \end{table} 
 
 
 \section{Light detection and analog-to-digital conversion}
 
-The light is detected by a Newport New Focus 2117-FC photodiode with an integrated trans-conductance amplifier. This photodiode has a sensitivity range of 800-1700nm, and a transimpedance gain of up to $18.8 \times 10^6 \;\; \mathrm{V}/\mathrm{A}$, with responsivity near $1 \mathrm{A}/\mathrm{W}$ at 1310 nm. Full specifications are detailed in Table \ref{table:pd}.
+The light is detected by a photodiode with an integrated trans-conductance amplifier (New Focus, Inc., United States. Part No: 2117-FC). This photodetector has a sensitivity range of 800-1700nm, and a transimpedance gain of up to $18.8 \times 10^6 \;\; \mathrm{V}/\mathrm{A}$, with responsivity near $1 \mathrm{A}/\mathrm{W}$ at 1310 nm. %Full specifications are detailed in Table \ref{table:pd}.
 
 As the interference carrier signal is set at 500 KHz, the photodiode low-pass and high-pass filters are configured to pass signals between 300 Khz and 1 MHz.
 
@@ -296,33 +334,33 @@ As the interference carrier signal is set at 500 KHz, the photodiode low-pass an
 %\caption{The Newport New Focus 2117-FC photodetector.}
 %\end{figure}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{ >{\bf}r | l}
-Part number & \\
-Wavelength range & 800 - 1700 nm \\
-Transimpedance gain & $18.8 \times 10^6 \mathrm{V/A}$ \\
-Noise equivalent power & 0.4 $mathrm{pW}/\sqrt{\mathrm{Hz}}$ \\
-Price & \$1390 \\
-\end{tabular}
-\caption{Specifications for the photo detector. \label{table:pd}}
-\end{table}
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{ >{\bf}r | l}
+% Part number & \\
+% Wavelength range & 800 - 1700 nm \\
+% Transimpedance gain & $18.8 \times 10^6 \mathrm{V/A}$ \\
+% Noise equivalent power & 0.4 $mathrm{pW}/\sqrt{\mathrm{Hz}}$ \\
+% Price & \$1390 \\
+% \end{tabular}
+% \caption{Specifications for the photo detector. \label{table:pd}}
+% \end{table}
 
-The output from the photodiode is digitized by using an Interface Corporation PCI-3525 DAC/ADC card. Full specifications for this part are shown in Table \ref{table:dac}. Multiple PCI-3525 cards are daisy chained together to be able to capture $>2$ signals simultaneously. This is useful, as up to six signals may be of interest to capture: the photodiode output, the RF synthesizer difference frequency, the acoustic stimulus signal, and the two $z$-stage quadrature encoders.
+The output from the photodiode is digitized by using a PCI DAC/ADC card (Interface Co., Japan. Part No: PCI-3525). Multiple DAC/ADC cards are daisy chained together to be able to capture $>2$ signals simultaneously. This is useful, as up to six signals may be of interest to capture: the photodiode output, the RF synthesizer difference frequency, the acoustic stimulus signal, and the two $z$-stage quadrature encoders.
 
-To capture these signals, a program was written in C to communciate with the PCI-3525 cards. The source for this program may be found in Appendix \ref{app:pci3525}. As the photodiode filters frequencies above 1 MHz, a sampling frequency of 2.5 MHz was choosen to avoid frequency aliasing. The capture program allows the length of the signal captured to be specified as an input argument, allowing for application flexibility.
+To capture these signals, a program was written in C to communciate with the DAC/ADC The source for this program may be found in Appendix \ref{app:pci3525}. As the photodiode filters frequencies above 1 MHz, a sampling frequency of 2.5 MHz was choosen to avoid frequency aliasing. The capture program allows the length of the signal captured to be specified as an input argument, allowing for application flexibility.
 
-The PCI-3525 card can also be used to synthesize a low-frequency acoustic stimulus signal. This obviates the need to have a fifth input for the acoustic stimulus signal.
+The digital to analog converter can also be used to synthesize a low-frequency acoustic stimulus signal. This obviates the need to have a fifth input for the acoustic stimulus signal.
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{ >{\bf}r | l}
-Part number & PCI-3525 \\
-Bit depth & 12 \\
-Sampling rate & 10 MS/s \\
-\end{tabular}
-\caption{Specifications for the DAC. \label{table:dac}}
-\end{table}
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{ >{\bf}r | l}
+% Part number & PCI-3525 \\
+% Bit depth & 12 \\
+% Sampling rate & 10 MS/s \\
+% \end{tabular}
+% \caption{Specifications for the DAC. \label{table:dac}}
+% \end{table}
 
 \section{Signal processing}
 \label{sec:sig_proc}
@@ -346,6 +384,7 @@ First, the captured signal is bandpassed with a smaller passband than is practic
 This is implemented in MATLAB, code for which may be found in the Appendicies.
 
 \subsection{Motion analysis}
+\label{sec:motion_analysis_2}
 
 An overview of the signal processing steps necessary to perform on acquired data to estimate motion parameters is shown in Figure \ref{fig:motion_analysis_block_diagram}.
 
@@ -374,44 +413,50 @@ Axial resolution is limited by the coherence length of the optical source, as de
 \delta_z = l_c = \frac{2 \ln{2}}{\pi} \frac{\lambda_0^2}{\Delta \lambda}
 \end{equation}
 
-The specifications for the optical source used in this project were not precisely equivalent to the measured performance of the actual source. The actual -3dB bandiwdth was 86.3 nm, whereas the specified was 100 nm. Additionally, the actual power output was 7.00 mW, whereas the specified was 10 mW. The slightly smaller bandwidth results in an axial resolution that of 8.77 microns, slightly inferior to the prediction in Section~\ref{sec:principles_oct}.
-
-This resolution is not adversally impacted by any other optical components in the system. The results of optical spectrum measurement at the output of several key components in the OCT system are shown in Figure \ref{fig:osa}.
+The specifications for the optical source used in this project were not precisely equivalent to the measured performance of the actual source. The actual -3dB bandiwdth was 86.3 nm, whereas the specified was 100 nm. Additionally, the actual power output was 7.00 mW, whereas the specified was 10 mW. The slightly smaller bandwidth results in an axial resolution that of 9.94 microns, inferior to the prediction in Section~\ref{sec:principles_oct}. The optical spectrum measurements also showed that bandiwdth, and therefore resolution is not adversally impacted by any other optical components in the system. %The results of optical spectrum measurement at the output of several key components in the OCT system are shown in Figure \ref{fig:osa}.
 
 % Optical spectrum analyzer graph
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.9\textwidth]{Images/System/osa.png}
+% \caption[Optical spectrum analyzer results for the outputs of four critical parts in the OCT system.]{Optical spectrum analyzer results for the outputs of four critical parts in the OCT system. Due to a different experimental setup, the power levels measured in retro-reflector collimation are not representative of the actual system, and are clearly heavily affected by the noise floor of the optical spectrum analyzer. \label{fig:osa}}
+% \end{figure}
+
+From the optical power spectral density, the point spread function can be numerically predicted by calculating the Fourier Transform, as derived in Section~\ref{sec:principles_oct}. Using the Discrete Fourier Transform, the optical spectrum analyzer results above may be used to estimate the axial PSF. A result of this analysis is shown in Figure~\ref{fig:axial_psf_matlab}.
+
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.0\textwidth]{Images/System/osa.png}
-\caption[Optical spectrum analyzer results for the outputs of four critical parts in the OCT system.]{Optical spectrum analyzer results for the outputs of four critical parts in the OCT system. Due to a different experimental setup, the power levels measured in retro-reflector collimation are not representative of the actual system, and are clearly heavily affected by the noise floor of the optical spectrum analyzer. \label{fig:osa}}
+\includegraphics[width=0.75\textwidth]{Images/Background/theoretical_axial_psf.png}
+\caption[Theoretical axial point spread function.]{Theoretical axial point spread function. Computed from the optical spectrum analyzer results above.\label{fig:axial_psf_matlab}}
 \end{figure}
 
 \subsection{Transverse resolution}
 \label{sec:transverse_res}
 
-The maximum achievable resolution in the transverse direction is determined by the diffraction limit, as discussed in Chapter 1.
+The maximum achievable resolution in the transverse direction is determined by the diffraction limit, as discussed in Chapter 1. The FWHM of the Airy disc produced by diffraction is as follows. \cite{hecht}
 
 \begin{equation} \label{eq:tres2}
-d = n\frac{\lambda D}{2f}
+d = 0.51 \lambda \frac{1}{\mathrm{NA}}
 \end{equation}
 
-where $D$ is the diameter of the entrance aperture, and $f$ is the working distance of the lens (distance to focal point). For the system described above, this evaluates to a diffraction limit of 590 nanometers.
+In this case, the obejct space NA of the fiber mode, 0.14, is smaller than the image space NA, so it predominates. For the system described above, this evaluates to a diffraction limit of 4.77 microns in air.
 
-Using Zemax Optical Design Software, and files provided from Thorlabs, the manufacturer of the GRIN lens, a more accurate simulation was created of the objective lens performance. Here, it was found to be diffraction limited when an object was on the optical axis (as is the case when emerging from an optical fiber).
+Using Zemax Optical Design Software, and files provided from Thorlabs, the manufacturer of the GRIN lens, a more accurate simulation was created of the objective lens performance. Here, it was found to be very nearly diffraction limited when an object was on the optical axis (as is the case when emerging from an optical fiber). This is expected, as diffraction limited performance is, along with small size, one of the main advantages of a GRIN lens.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.75\textwidth]{Images/Zemax/GRO-raytrace.png}
+\includegraphics[width=0.55\textwidth]{Images/Zemax/GRO-raytrace.png}
 \caption[A Zemax raytrace showing the path of light through the GRIN lens.]{A Zemax raytrace showing the path of light through the GRIN lens. Light emerges from the SMF-28e fiber (NA = 0.14) on the left, and is focused to a point on the right.}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.75\textwidth]{Images/Zemax/GRO-psf.png}
-\caption[The 2D PSF of the GRIN lens objective system.]{The 2D PSF of the GRIN lens objective system. The area shown is 220 microns on each side.}
+\includegraphics[width=0.55\textwidth]{Images/Zemax/GRIN_PSF.png}
+\caption[The PSF of the GRIN lens objective system.]{The PSF of the GRIN lens objective system. The FWHM width is 5.16 microns, which shows that it is very nearly diffraction limited.}
 \end{figure}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.75\textwidth]{Images/Zemax/GRO-encircledenergy.png}
-\caption[A graph of the energy encircled at a given radius for the actual GRIN lens]{A graph of the energy encircled at a given radius for the actual GRIN lens. The second line shows encircled energy for an ideal lens. This shows performance that is very nearly diffraction limited.}
-\end{figure}
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.75\textwidth]{Images/Zemax/GRO-encircledenergy.png}
+% \caption[A graph of the energy encircled at a given radius for the actual GRIN lens]{A graph of the energy encircled at a given radius for the actual GRIN lens. The second line shows encircled energy for an ideal lens. This shows performance that is very nearly diffraction limited.}
+% \end{figure}

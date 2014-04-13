@@ -32,14 +32,12 @@ The Micromechanics Group at RLE currently uses a doppler optical coherence micro
 
 The Hong system is designed around free space optics that have been carefully aligned and positioned on an optics table. This design has several disadvantages, chiefly that it is difficult and time consuming to align with the animal that is being imaged. This process can take several hours, due to the need to move the animal precisely under the DOCT objective, and the need to align the cochlea with the fixed optical axis of the DOCT system. Furthermore, the current free space system is bulky and fragile.
 
-The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic (FO) coupled components. Therefore, it will be hereafter reffered to as the FO-DOCM system. Fiber optics can be more compact, and are almost insensitive to movement or changes in physical shape (one notable exception to this is polarization sensitivity, which will be discussed in Chapter 2). Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for a variable angle optical axis, and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
+The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic (FO) coupled components. Therefore, it will be hereafter referred to as the FO-DOCM system. Fiber optics can be more compact and mobile than free space optical components.. Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for a variable angle optical axis, and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
 
 Additionally, the FO-DOCM system uses a longer wavelength of light than the Hong system, 1310nm IR instead of 800nm IR. While this has some disadvantages in terms of axial resolution capability, as discussed in Section \ref{sec:axial_res}, this wavelength also has several advantages.It is a commonly used wavelength for communication applications, and therefore many optical components are designed for compatibility in this region. More importantly, 1310nm has significantly reduced scattering through bone tissue, therefore allowing for greater transmission and penetration. This has the potential to obviate the current need to image through either the cochlear round window or a hole cut in the cochlear apex. \cite{Sandell2011} \cite{Bashkatov2006}
 
 \section{Principle of operation of time domain OCT}
 \label{sec:principles_oct}
-
-Throughout this document, the coordinate axis parallel to the direction of light emission from the objective shall be referred to as the ``axial'' direction, or ``z'' axis. The plane perpendicular to this axis is known as the ``transverse'' plane, or, sometimes, the ``x'' and ``y'' axes. A diagram of this definition is shown in Figure~\ref{fix:axis_def}.
 
 \begin{figure}[h!]
 \centering
@@ -47,10 +45,12 @@ Throughout this document, the coordinate axis parallel to the direction of light
 \caption{Definition of axes.\label{fig:axis_def}}
 \end{figure}
 
+Throughout this document, the coordinate axis parallel to the direction of light emission from the objective shall be referred to as the ``axial'' direction, or ``$z$'' axis. The plane perpendicular to this axis is known as the ``transverse'' plane, or, sometimes, the ``$x$'' and ``$y$'' axes. A diagram of this definition is shown in Figure~\ref{fig:axis_def}.
+
 \begin{figure}[h!]
   \centering
-    \includegraphics[width=0.6\textwidth]{Images/Background/basic_oct.png}
-      \caption{A schematic of a basic OCT system.\label{fig:basic_oct}}
+    \includegraphics[width=0.75\textwidth]{Images/Background/basic_oct_2.png}
+      \caption{Block diagram of the simplest possible OCT system.\label{fig:basic_oct}}
 \end{figure}
 
 OCT functions by utilizing the principle of the Michelson interferometer, as shown in Figure~\ref{fig:basic_oct}. Light is split into two beams. One is reflected from a mirror, the other is scattered from a biological sample. The light is then recombined and the intensity measured by a photodetector. When the optical path lengths of the two beams are closely matched, an interference pattern may be observed. By using temporally incoherent (broadband) light, the interference pattern is capable of absolute localization.
@@ -85,22 +85,22 @@ $\Delta t$, the time delay between the two signals, is proportional to the path 
 \Gamma_{XX}(\tau) = 2 \int_{0}^\infty S_{XX}(f) \exp(2 \pi j \tau f) \,df
 \end{equation}
 
-Therefore, the axial resolution in an OCT system is limited by the spectral properties of the light source. Given a source of center wavelength $\lambda_0$ and FWHM bandwidth $\Delta \lambda$, if we assume a Gaussian PSD, we may find the width of the autocorrelation function, and therefore the axial resolution. \cite{fercher}
+Therefore, the axial resolution in an OCT system is limited by the spectral properties of the light source. Given a source of center wavelength $\lambda_0$ and FWHM bandwidth $\Delta \lambda$, if a Gaussian PSD is assumed, we may find the width of the autocorrelation function, and therefore the axial resolution. \cite{fercher}
 
 \begin{equation} \label{eq:ares}
 \delta_z = l_c = \frac{2 \ln{2}}{\pi} \frac{\lambda_0^2}{\Delta \lambda}
 \end{equation}
 
-This however, is just the envelope of the autocorrelation function. The autocorrelation function also has a periodic interference component, with interference peaks seperated by one wavelength. This can be viewed as a carrier wave modulating the autocorrelatione envelope. The frequency of this carrier in time is therefore dependent both on the wavelength of the light source, $\lambda_0$, and the speed of the scan, $v_s$. \cite{fercher}
+This is just the envelope of the autocorrelation function, however. The autocorrelation function also has a periodic interference component. This is because the PSD $S_{XX}$ in Equation~\ref{eq:ares} is not centered on a frequency of 0, but instead of the central optical frequency of the source. In the spatial domain, this represents itself as a carrier wave modulating the autocorrelation envelope, with a period of one wavelength. The frequency of this carrier as captured by the photodetector is therefore dependent both on the wavelength of the light source, $\lambda_0$, and the speed of the axial scan, $v_s$. Note the factor of two that results from the fact that changing the length of the reference path by a distance $\Delta x$ changes the optical path lenght by $ 2 \Delta x$. \cite{fercher}
 
 \begin{equation} \label{eq:carrier}
-f_{mod} = 4 \pi v_s / \lambda_0
+f_{mod} = 2 v_s / \lambda_0
 \end{equation}
 
-The transverse resolution limit is the standard diffraction limit for a lens, but, depending on the quality of the objective lens optics, this may not be achievable. \cite{hecht}
+The transverse resolution limit is the standard diffraction limit for a lens, but, depending on the quality of the objective lens optics, this may not be achievable. The FWHM width of the diffraction limit is given as follows. \cite{hecht}
 
 \begin{equation} \label{eq:tres}
-\delta_x = 0.61 \frac{\lambda}{NA}
+\delta_x = 0.51 \frac{\lambda_0}{NA}
 \end{equation}
 
 \section{Heterodyne OCT with Acousto-optic Modulators}
@@ -117,29 +117,39 @@ In some cases, it is desirable to have a higher carrier frequency, or a carrier 
 \caption{Light scatters off of acoustic waves in a quartz crystal, changing both frequency and angle.}
 \end{figure}
 
-Acousto optic modulators (AOMs) are crystals, typically quartz, that use the acousto-optic effect to shift the frequency of light. A transducer establishes an acoustic standing wave at RF frequencies inside the crystal. Compression waves in the crystal can be modeled as gradients in the refractive index. Light incident upon these refractive index gradients will be scattered. \cite{haus}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.5\textwidth]{Images/Background/aom_scattering.png}
-\caption{Light scattering off of acoustic wavefronts in an acousto-optic modulator.}
-\end{figure}
-
-Scattered light interferes constructively when the following condition is met.
-
-\begin{equation} \label{eq:constructive_interference}
-n \lambda_L = \Lambda (\sin{\theta_i} + \sin{\theta_d})
-\end{equation}
-
-Conservation of momentum requires that $\theta_i = \theta_d$, which simplifies the constructive interference condition to:
+Acousto optic modulators (AOMs) are crystals, typically quartz, that use the acousto-optic effect to shift the frequency of light. A transducer establishes an acoustic standing wave at RF frequencies inside the crystal. Acoustic compression waves in the crystal can be modeled as gradients in the refractive index. Light incident upon these refractive index gradients will be scattered, changing its angle and its frequency. Momentum conservation of the scattered light requires the following condition to be satisfied. \cite{haus}
 
 \begin{equation}
-n \lambda_L = 2 \Lambda \sin{\theta_d}
+\mathbf{k}_{\mathrm{sound}} + \mathbf{k}_{\mathrm{incident}} = \mathbf{k}_{\mathrm{diffracted}}
 \end{equation}
 
-This Bragg diffraction also shifts the frequency of the light up by $mF$, where $m$ is the order of diffraction, and $F$ is the acoustic wave frequency. \cite{haus}
+This can be solved to give a condition on the angle in the case where $\mathbf{k}_i$ is normal to $\mathbf{k}_s$, where $\lambda$ is the optical wavelength and $\Lambda$ is the acoustic wavelength. A small angle approximation is applied as it is assumed that $|\mathbf{k}_i| \gg |\mathbf{k}_s|$.
 
-In a fiber-coupled AOM, the input and output fibers are aligned with the first order diffraction beam.
+\begin{equation} 
+\sin{\theta} \approx \frac{|\mathbf{k}_s|}{|\mathbf{k}_i|} = \frac{\lambda}{n\Lambda}
+\end{equation}
+
+In some crystals, higher order diffraction angles occur, however, it is difficult to achieve high modulation efficiences, and they are not of significant interest to this research.
+
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.5\textwidth]{Images/Background/aom_scattering.png}
+% \caption{Light scattering off of acoustic wavefronts in an acousto-optic modulator.}
+% \end{figure}
+
+% Scattered light interferes constructively when the following condition is met.
+
+% \begin{equation} \label{eq:constructive_interference}
+% n \lambda_L = \Lambda (\sin{\theta_i} + \sin{\theta_d})
+% \end{equation}
+
+% Conservation of momentum requires that $\theta_i = \theta_d$, which simplifies the constructive interference condition to:
+
+% \begin{equation}
+% n \lambda_L = 2 \Lambda \sin{\theta_d}
+% \end{equation}
+
+Energy conservation further requires that the frequency of scattered light be shifted by $F$, the acoustic wave frequency. \cite{haus} This frequency shift is what makes an AOM of practical interest for optical heterodyning.
 
 \subsection{Generating a carrier wave with AOMs}
 \label{sec:aom_carrier}
@@ -149,17 +159,17 @@ Even with an imprecise or drifting optical frequency, the precise shift frequenc
 The instantaneous complex electric field can be written for two different frequencies can be written as
 
 \begin{align}
-E_a(t) & = E_a e^{2 \pi ft j} \\
-E_b(t) & = E_b e^{2 \pi (f + F)t j}
+E_a(t) & = E_a \exp{(2 \pi ft j)} \\
+E_b(t) & = E_b \exp{(2 \pi (f + F)t j)}
 \end{align}
 
 The interference between these two fields creates a beat frequency, with the optical frequency amplitude modulated by the slower RF frequency $F$.
 
 \begin{align}
-E_a(t) + E_b(t) = & E_a e^{2 \pi ftj} + E_b e^{2 \pi (f + F)t j} \\
-= & E_a e^{2 \pi ft j} + E_b (e^{2 \pi ftj} e^{2 \pi Ftj}) \\
-= & E_a e^{2 \pi ftj} (1 + \frac{E_b}{E_a} e^{2 \pi Ftj}) \\
-= & E_a(t) (1 + \frac{E_b}{E_a} e^{2 \pi Ftj})
+E_a(t) + E_b(t) = & E_a \exp{(2 \pi ftj)} + E_b \exp{(2 \pi (f + F)t j)} \\
+= & E_a \exp{(2 \pi ftj)} + E_b (\exp{(2 \pi ftj)} \exp{(2 \pi Ftj)}) \\
+= & E_a \exp{(2 \pi ftj)} (1 + \frac{E_b}{E_a} \exp{(2 \pi Ftj)}) \\
+= & E_a(t) (1 + \frac{E_b}{E_a} \exp{(2 \pi Ftj)})
 \end{align}
 
 The RF frequency $F$ used to drive the AOMs is typically on the order of 40-200 MHz. For many applications, this is a higher carrier frequency than desired. In this case, it is possible to use two AOMs to generate an even lower frequency carrier, by driving them at slightly different RF frequencies.
@@ -182,53 +192,56 @@ Physical excitations and movements of interest in tissues are typically sinusoid
 v(t) = A_o \cos{(\omega t)}
 \end{equation}
 
-Light scattering off of moving particles induces a change in the frequency of scattered light, due to the doppler effect.
+Light scattering off of moving particles induces a change in the frequency of scattered light, due to the Doppler effect. This change in frqeuency can be expressed as follows, where $\alpha$ is the angle between the direction of light propagation and the scattered light detector, and $\beta$ is the angle between the direction of motion of the media and the direction of light propagation. \cite{hurst}
 
-%% more equations / background
+%Because the speed of scattering media will always be much smaller than the speed of the light, the change in frequency caused by the Doppler effect is:
 
-The new instantaneous electric field amplitudes may be written as follows, and their sum may be calculated.
+\begin{equation} \Delta f = 2 \frac{v}{c} f_0 \cos{(\beta)} \sin{(\frac{\alpha}{2})} \end{equation}
+
+In the FO-DOCM apparatus, only light that is scattered backwards can be detected, so $\alpha$ is assumed to be $\pi$ radians. The direction of motion is assumed to be in the direction of light propogation for simplicity, so that $\beta = 0$. The equation then simplifies to the following.
+
+\begin{equation} \Delta f = 2 \frac{v}{c} f_0 \end{equation}
+
+The instantaneous electric field amplitudes from Section~\ref{sec:aom_carrier}, $E_a$ and $E_b$, may be written as follows. $E_a$ has been scattered from media moving with the velocity given by Equation~\ref{eq:media_v}, while $E_b$ has not, representing the sample and reference paths in the OCT system.
 
 \begin{align}
-E_a(t) & = E_a \exp{(2 \pi t j (f + F_1)(1 + \frac{A_o\cos{\omega t}}{c}))} \\
+E_a(t) & = E_a \exp{(2 \pi t j (f + F_1)(1 + \frac{2 A_o\cos{\omega t}}{c}))} \\
 E_b(t) & = E_b \exp{(2 \pi t j (f + F_2))}
 \end{align}
 
+The electric field at the detector is the sum of the two electric field amplitudes.
+
 \begin{dmath}
-E_b(t) + E_a(t) = E_a \exp{(2 \pi t j (f + F_1))}\left(\exp{\left(\frac{2 \pi t j A_o \cos{wt}}{c}(f + F_1)\right)} + \frac{E_b}{E_a} \exp{(2 \pi t j (F_2 - F_1))}\right)
+E_b(t) + E_a(t) = E_a \exp{(2 \pi t j (f + F_1))}\left(\exp{\left(\frac{2 \pi t j 2 A_o \cos{wt}}{c}(f + F_1)\right)} + \frac{E_b}{E_a} \exp{(2 \pi t j (F_2 - F_1))}\right)
 \end{dmath}
 
-This equation can be simplified slightly by substituting two new symbols for the modified optical frequency and RF frequency difference.
-
-\begin{align*}
-f' = & f + F_1 \\
-\Delta F = & F_2 - F_1
-\end{align*}
+This equation can be simplified slightly by substituting two new symbols for the modified optical frequency, $f' = f + F_1$ and RF frequency difference, $\Delta F = F_2 - F_1$.
 
 \begin{dmath}
-E_b(t) + E_a(t) = E_a \exp{(2 \pi t j f')}\left(\exp{\left(2 \pi t j f' \frac{ A_o \cos{wt}}{c}\right)} + \frac{E_b}{E_a} \exp{(2 \pi t j \Delta F)}\right)
+E_b(t) + E_a(t) = E_a \exp{(2 \pi t j f')}\left(\exp{\left(2 \pi t j f' \frac{ 2 A_o \cos{wt}}{c}\right)} + \frac{E_b}{E_a} \exp{(2 \pi t j \Delta F)}\right)
 \end{dmath}
 
 The instantaneous light intensity is equivalent to the absolute value of the instaneous electric field amplitude squared.
 
 \begin{dmath}
-I(t) = E_a^2 \left(1 + \frac{E_b^2}{E_a^2} + 2 \frac{E_b}{E_a} \cos{\left(2 \pi t \left(\Delta F + f' \left( \frac{A_o \cos{\omega t}}{c} \right) \right)\right)} \right)
+I(t) = E_a^2 \left(1 + \frac{E_b^2}{E_a^2} + 2 \frac{E_b}{E_a} \cos{\left(2 \pi t \left(\Delta F + f' \left( \frac{2 A_o \cos{\omega t}}{c} \right) \right)\right)} \right)
 \end{dmath}
 
 \begin{dmath}
-I(t) = E_a^2 + E_b^2 + 2 E_b E_a \cos{\left(2 \pi t \left(\Delta F + f' \left( \frac{A_o \cos{\omega t}}{c} \right)  \right)\right)}
+I(t) = E_a^2 + E_b^2 + 2 E_b E_a \cos{\left(2 \pi t \left(\Delta F + f' \left( \frac{2 A_o \cos{\omega t}}{c} \right)  \right)\right)}
 \end{dmath}
 
 The frequency shift induced by the motion of the media can clearly be seen in the instaneous phase of the intensity oscillation.
 
 \begin{dmath}
 \label{eq:phase_aom_doppler}
-\phi(t) = 2 \pi t \left(\Delta F + f' \left( \frac{A_o \cos{\omega t}}{c} \right)   \right)
+\phi(t) = 2 \pi t \left(\Delta F + f' \left( \frac{2 A_o \cos{\omega t}}{c} \right)   \right)
 \end{dmath}
 
 This is equivalent to frequency modulation, with the periodic change in frequency of:
 
 \begin{equation}
-f' \left( \frac{A_o \cos{\omega t}}{c} \right)
+f' \left( \frac{2 A_o \cos{\omega t}}{c} \right)
 \end{equation}
 
 This oscillation can be extracted from the captured signal using the Hilbert transform, as discussed in Section \ref{sec:sigproc_mo_anal}. While this derivation assumed perfectly monochromatic light sources, as would be the case in an ideal laser interferometer, the general result extends to the non-monochromatic random signals used in Section~\ref{sec:principles_oct}.
@@ -239,21 +252,22 @@ This oscillation can be extracted from the captured signal using the Hilbert tra
 
 \begin{figure}[h!]
   \centering
-\begin{tikzpicture}[node distance = 2cm, auto]
-    % Place nodes
-    \node [block] (bpf) {Analog band pass filter and preamplifier};
-    \node [block, left of=bpf, node distance=3cm] (pd) {Photodiode};
-    \node [block, right of=bpf, node distance=3cm] (adc) {Analog to digital converter};
-    \node [block, below of=adc, node distance=3cm] (dbpf) {Digital band pass filter};
-    \node [block, right of=dbpf, node distance=3cm] (hilb) {Hilbert transform envelope extraction};
-    \node [block, right of=hilb, node distance=3cm] (ds) {Downsampling};
-    % Draw edges
-    \path [line] (pd) -- (bpf);
-    \path [line] (bpf) -- (adc);
-    \path [line] (adc) -- (dbpf);
-    \path [line] (dbpf) -- (hilb);
-    \path [line] (hilb) -- (ds);
-\end{tikzpicture}
+  \includegraphics[width=1.0\textwidth]{Images/background/basic_dsp.png}
+% \begin{tikzpicture}[node distance = 2cm, auto]
+%     % Place nodes
+%     \node [block] (bpf) {Analog band pass filter and preamplifier};
+%     \node [block, left of=bpf, node distance=3cm] (pd) {Photodiode};
+%     \node [block, right of=bpf, node distance=3cm] (adc) {Analog to digital converter};
+%     \node [block, below of=adc, node distance=3cm] (dbpf) {Digital band pass filter};
+%     \node [block, right of=dbpf, node distance=3cm] (hilb) {Hilbert transform envelope extraction};
+%     \node [block, right of=hilb, node distance=3cm] (ds) {Downsampling};
+%     % Draw edges
+%     \path [line] (pd) -- (bpf);
+%     \path [line] (bpf) -- (adc);
+%     \path [line] (adc) -- (dbpf);
+%     \path [line] (dbpf) -- (hilb);
+%     \path [line] (hilb) -- (ds);
+% \end{tikzpicture}
 \caption[Basic OCT signal processing chain.]{Basic OCT signal processing chain. The bandpass filter is centered around the carrier frequency from equation \ref{eq:carrier}. The demodulator either can be as straightforward as an envelope follower or a Hilbert transform based analytic continuation.}
 \end{figure}
 
@@ -287,7 +301,7 @@ The envelope, which does need the high sampling rate previously required in orde
 As we showed in Section \ref{sec:doppler_aom}, the phase of the amplitude of light scattered from media moving periodically, which we will refer to as the heterodyne signal, $V_{\mathrm{het}}$, can be expressed as follows.
 
 \begin{equation}
-\phi_{\mathrm{het}}(t) = 2 \pi t \left(\Delta F + f' \left( \frac{A_o \cos{\omega t}}{c} \right)   \right) + \phi_{\mathrm{offset}}
+\phi_{\mathrm{het}}(t) = 2 \pi t \left(\Delta F + f' \left( \frac{2 A_o \cos{\omega t}}{c} \right)   \right) 
 \end{equation}
 
 We also must capture a reference signal, notated as $V_{\mathrm{ref}}$, which is the difference between the two RF drive frequencies. This frequency difference is exactly half the carrier frequency of the heterodyne signal, so its phase may be written as:
@@ -311,13 +325,13 @@ Therefore, the instantaneous phase difference between the heterodyne signal and 
 Substituting in from Equation \ref{eq:phase_aom_doppler}, with $c$ replaced by $c/n$ to account for the refractive index of the media.
 
 \begin{equation}
-\phi_{\mathrm{het}}(t) - 2 \phi_{\mathrm{ref}}(t) = 2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right)
+\phi_{\mathrm{het}}(t) - 2 \phi_{\mathrm{ref}}(t) = 2 \pi t f'  \left( \frac{2 A_o \cos{\omega t}}{c/n} \right)
 \end{equation}
 
 Because the RF frequency $F_1 << f$, the optical frequency, we can approximate $f' = f + F_1 \approx f$, and simplify the equation above. The equation can be made simpler still by expressing the optical frequency as a wavenumber.
 
 \begin{equation}
-2 \pi t f'  \left( \frac{A_o \cos{\omega t}}{c/n} \right) \approx k n A_o \cos{\omega t}
+2 \pi t f'  \left( \frac{2 A_o \cos{\omega t}}{c/n} \right) \approx 2 k n A_o \cos{\omega t}
 \end{equation}
 
 Consequently, the periodic displacement of the sample, $D(t)$ may be calculated.
@@ -325,19 +339,44 @@ Consequently, the periodic displacement of the sample, $D(t)$ may be calculated.
 % ??? Where does Stan's factor of two come from?
 
 \begin{equation}
-D(t) = \frac{1}{kn} \phi(t)
+D(t) = \frac{1}{2kn} \phi(t)
 \end{equation}
 
 \section{Related work}
 
-As mentioned in Section \ref{sec:intro}, much of this research is an extension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong} Hong's work is quite similar to this thesis, but is also different in several ways: the use of free space optics rather than fiber optic components, the use of a shorter wavelength source, and, most importantly, the revised alignment and positioning apparatus. Similar data and results to that in \cite{hong} have been collected as part of this thesis, and may be compared directly. Additionally, the FO-DOCM system allows for continuous scanning of lines in an image, rather than point-by-point pixel acquisition.
+Since the 1960s, interferometry with laser light has been used to measure vibration in the cochlea. Early laser doppler intereferometer experiments required the placement of reflective beads on tissues of interest, however, these can influence the mechanical properties of the cochlea. \cite{Nuttall2012} Recent methods involving laser doppler interferometry have had success in measuring vibrations as small as 30 picometers without beads, but also require a parallel system, such as confocal microscopy, in order to produce an image of the tissues. Furthermore, laser interferometers are highly coherent, so vibration measurements have a depth seperation determined primarily by the beam divergence angle. \cite{Jacob2009} \cite{Ren2002} \cite{Ren2011} 
 
-%Why time domain? This differentiates our work? Can I spin it positively?
+Low coherence interferometry, such as OCT, solves this issue, as described earlier in this chapter. \cite{hong}
 
-While the FO-DOCM project uses time-domain doppler OCT, work has also been done in the field of spectral domain doppler OCT. \cite{Choudhury2011} \cite{Subhash2012} In order to detect motion, a spectral-domain OCT system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they induce. It is theorized that a time domain approach can result in higher resolution motion measurements, as a monolithic photodiode has better noise equivalent power then does a CCD line camera with a diffraction grating. However, the use of a time-domain system adds the considerable expense of requiring physical motion to scan the z-axis, resulting in significantly slower image acquisition. Spectral-domain doppler OCT systems have achieved results with an axial resolution of 13 microns and a motion detection noise floor of 300 pm. \cite{Choudhury2011}  % The FO-DOCM system is shown to be competitive with these results.
+\subsection{Other systems}
 
-From an optical perspective, there are other researchers that have used GRIN lens optics as an endoscopic objective lens, for instance T. Xie et. al. in 2006. \cite{Xie2006} Their research used a spectral domain technique and involved a much larger GRIN rod that could be handheld.
+TD-OCT \cite{Choudhury2006}
 
-As one of the benefits of the FO-DOCM system to the Micromechanics Group is its smaller size, this work may be seen as continuing the active effort of minimizing the size of the OCT apparatus. For example, B. Goldberg et. al. have researched the creation of a miniature swept frequency laser source for OCT imaging. \cite{Goldberg2009}
+SD-OCT \cite{Gao2013}
 
-Also of interest in the development of this system, and still a developing technique, is the use of algorithms and more sophisticated signal processing to improve the image quality and resolution ability of captured OCT data. Of significant interest is the possibility of correcting for dispersive effects caused by the propogation of light through the sample media. \cite{Xie2005} \cite{DrexlerBook} These techniques could also potentially be used to correct for dispersion caused by fiber length mismatch between the reference and sample paths, as discussed in Section~\ref{sec:reference_path}.
+SD-OCT (through bone) \cite{Choudhury2011} \cite{Subhash2012}
+
+microangiography \cite{Dziennis2012}
+
+\subsection{Positioning and GRIN lens}
+
+In addition to its near diffraction limited optical performance, the small size of GRIN lenses is another significant advantage for OCT applications. T. Xie et. al. have used a GRIN lens as an endoscopic probe for OCT, with a several distinct differences from the FO-DOCM system. In their research, a spectral domain approach was used, and the apparatus could be simpler as it did not require an analysis of motion. Rather than changing the actual position of the objective lens with respect to the sample, their apparatus changed the distance between a lens and a unit-pitch GRIN lens. Because the GRIN lens was unit-pitch, rays depart the GRIN lens as if they GRIN lens were not there, so that focus is entirely controlled by the lens prior to the GRIN lens. Furthermore, a servo-driven mirror was used to control axial scanning. By using frequency domain OCT, images could be captured much more quickly, so that the GRIN lens endoscopic probe could be held by hand. \cite{Xie2006}
+
+% talk about uniqueness of our mechanical apparatus?
+
+% small size is relevant here???
+% As one of the benefits of the FO-DOCM system to the Micromechanics Group is its smaller size, this work may be seen as continuing the active effort of minimizing the size of the OCT apparatus. For example, B. Goldberg et. al. have researched the creation of a miniature swept frequency laser source for OCT imaging. \cite{Goldberg2009}
+
+
+% ====================================
+
+% As mentioned in Section \ref{sec:intro}, much of this research is an extension of work done by Stanley Hong, also in the Cochlear Mechanics Group at MIT. In a 2006 paper in the Journal of Biomedical Optics, Hong discussed the first iteration of this time domain doppler OCT system. \cite{hong} Hong's work is quite similar to this thesis, but is also different in several ways: the use of free space optics rather than fiber optic components, the use of a shorter wavelength source, and, most importantly, the revised alignment and positioning apparatus. Similar data and results to that in \cite{hong} have been collected as part of this thesis, and may be compared directly. Additionally, the FO-DOCM system allows for continuous scanning of lines in an image, rather than point-by-point pixel acquisition.
+
+% %Why time domain? This differentiates our work? Can I spin it positively?
+
+% While the FO-DOCM project uses time-domain doppler OCT, work has also been done in the field of spectral domain doppler OCT. \cite{Choudhury2011} \cite{Subhash2012} In order to detect motion, a spectral-domain OCT system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they induce. It is theorized that a time domain approach can result in higher resolution motion measurements, as a monolithic photodiode has better noise equivalent power then does a CCD line camera with a diffraction grating. However, the use of a time-domain system adds the considerable expense of requiring physical motion to scan the z-axis, resulting in significantly slower image acquisition. Spectral-domain doppler OCT systems have achieved results with an axial resolution of 13 microns and a motion detection noise floor of 300 pm. \cite{Choudhury2011}  % The FO-DOCM system is shown to be competitive with these results.
+
+
+% Also of interest in the development of this system, and still a developing technique, is the use of algorithms and more sophisticated signal processing techniques to improve the image quality and resolution ability of captured OCT data. Of significant interest is the possibility of correcting for dispersive effects caused by the propogation of light through the sample media. \cite{Xie2005} \cite{DrexlerBook} These techniques could also potentially be used to correct for dispersion caused by fiber length mismatch between the reference and sample paths, as discussed in Section~\ref{sec:reference_path}.
+
+% Overall, this thesis builds on previous work and ideas in Optical Coherence Tomography to develop an apparatus that satisfies the niche set of requirements of the Micromechanics Group.
