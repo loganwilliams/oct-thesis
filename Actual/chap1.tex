@@ -22,19 +22,19 @@ The mammilian cochlea is capable of remarkable sensory perception. It can distin
       \label{fig:cochlea}
 \end{figure}
 
-A tissue of particular interest in the cochlea is the tectorial membrane, which is in direct contact with the hair cells, as shown in Figure \ref{fig:cochlea}. This tissue's proximity to the sensory cells, and its interesting mechanical properties, including frequency-sensitive acoustic wave propogation, suggest that it could play an active role in auditory frequency discrimination and motion amplification. \cite{Ghaffari2010}
+A tissue of particular interest in the cochlea is the tectorial membrane, which is in direct contact with the hair cells, as shown in Figure \ref{fig:cochlea}. This tissue's proximity to the sensory cells, and its interesting mechanical properties, including frequency-sensitive acoustic wave propagation, suggest that it could play an active role in auditory frequency discrimination and motion amplification. \cite{Ghaffari2010}
 
 %However, as it is almost entirely water, it is very difficult to image with conventional imaging techniques. \cite{needcitation}
 
 A technique known as optical coherence tomography allows three-dimensional imaging into and through cochlear tissues such as the tectorial membrane, by making use of the auto-correlation properties of temporally incoherent light. This technique can image deeper into tissues than other three-dimensional imaging methods such as confocal microscopy. Furthermore, by measuring the doppler frequency shift of scattered light, OCT allows for measurement of motion, both constant and periodic. \cite{DrexlerBook}
 
-The Micromechanics Group at RLE currently uses a doppler optical coherence microscopy, or DOCM (a subset of doppler optical coherence tomography, or DOCT) system to image the mammilian cochlea and acquire data about the mechanical motions of tissues. This system was developed by former student Stanley Hong, and as of such, will be referred to as the Hong system. \cite{hong}
+The Micromechanics Group at RLE currently uses a doppler optical coherence microscopy, or DOCM (a subset of doppler optical coherence tomography, or DOCT) system to image the mammalian cochlea and acquire data about the mechanical motions of tissues. This system was developed by former student Stanley Hong, and as of such, will be referred to as the Hong system. \cite{hong}
 
 The Hong system is designed around free space optics that have been carefully aligned and positioned on an optics table. This design has several disadvantages, chiefly that it is difficult and time consuming to align with the animal that is being imaged. This process takes significant time, due to the need to move the animal precisely under the DOCT objective, and the need to align the cochlea with the fixed optical axis of the DOCT system.
 
 The system described in this thesis, while similar in many ways to the existing DOCT system, primarily uses fiber optic (FO) coupled components. Therefore, it will be hereafter referred to as the FO-DOCM system. Fiber optics can be more compact and mobile than free space optical components.. Additionally, the objective used for imaging the actual tissue is mounted on a custom designed mechanical apparatus that allows for an adjustable angle optical axis and easy repositioning, to work with the researcher and research animal, rather than forcing the animal to conform to the optical system. These improvements should significantly improve the workflow of other researchers in the Micromechanics Group.
 
-Additionally, the FO-DOCM system uses a longer wavelength of light than the Hong system, 1310nm IR instead of 800nm IR. While this has some disadvantages in terms of axial resolution capability, as discussed in Section \ref{sec:principles_oct}, this wavelength also has several advantages. It is a commonly used wavelength for communication applications, and therefore many optical components are designed for compatibility in this region. More importantly, 1310nm has significantly reduced scattering through bone tissue, therefore allowing for greater transmission and penetration. This has the potential to obviate the current need to image through either the cochlear round window or a hole cut in the cochlear apex. \cite{Sandell2011} \cite{Bashkatov2006}
+Additionally, the FO-DOCM system uses a longer wavelength of light than the Hong system, 1310 nm IR instead of 800 nm IR. While this has some disadvantages in terms of axial resolution capability, as discussed in Section \ref{sec:principles_oct}, this wavelength also has several advantages. It is a commonly used wavelength for communication applications, and therefore many optical components are designed for compatibility in this region. More importantly, 1310 nm has significantly reduced scattering through bone tissue, therefore allowing for greater transmission and penetration. This has the potential to obviate the current need to image through either the cochlear round window or a hole cut in the cochlear apex. \cite{Sandell2011} \cite{Bashkatov2006}
 
 \section{Principle of operation of time domain OCT}
 \label{sec:principles_oct}
@@ -91,13 +91,13 @@ Therefore, the axial resolution in an OCT system is limited by the spectral prop
 \delta_z = l_c = \frac{2 \ln{2}}{\pi} \frac{\lambda_0^2}{\Delta \lambda}
 \end{equation}
 
-This is just the envelope of the autocorrelation function, however. The autocorrelation function also has a periodic interference component. This is because the PSD $S_{XX}$ in Equation~\ref{eq:ares} is not centered on a frequency of 0, but instead of the central optical frequency of the source. In the spatial domain, this represents itself as a carrier wave modulating the autocorrelation envelope, with a period of one wavelength. The frequency in time of this carrier as captured by the photodetector is therefore dependent both on the wavelength of the light source, $\lambda_0$, and the speed of the axial scan, $v_s$. Note the factor of two that results from the fact that changing the length of the reference path by a distance $\Delta x$ changes the optical path lenght by $ 2 \Delta x$. \cite{fercher}
+This is just the envelope of the autocorrelation function, however. The autocorrelation function also has a periodic interference component. This is because the PSD $S_{XX}$ in Equation~\ref{eq:ares} is not centered on a frequency of 0, but instead of the central optical frequency of the source. In the spatial domain, this represents itself as a carrier wave modulating the autocorrelation envelope, with a period of one wavelength. The frequency in time of this carrier as captured by the photodetector is therefore dependent both on the wavelength of the light source, $\lambda_0$, and the speed of the axial scan, $v_s$. Note the factor of two that results from the fact that changing the length of the reference path by a distance $\Delta x$ changes the optical path length by $ 2 \Delta x$. \cite{fercher}
 
 \begin{equation} \label{eq:carrier}
 f_{mod} = 2 v_s / \lambda_0
 \end{equation}
 
-The transverse resolution limit is the standard diffraction limit for a lens, but, depending on the quality of the objective lens optics, this may not be achievable. The FWHM width of the diffraction limit is given as follows. \cite{hecht}
+The transverse resolution limit is the standard diffraction limit for a lens, but, depending on the quality of the objective lens optics, this may not be achievable. In general, diffraction through a circular aperture creates an Airy distribution of light, with size dependent on the diameter of the aperture and its distance from the image. These two distances are combined into the numeric aperture (NA), which in the paraxial approximation is $\approx D/(2f)$, where $f$ is the distance to the image, and $D$ is the aperture diameter. The FWHM size of the diffraction limited Airy disc is given as follows. \cite{hecht}
 
 \begin{equation} \label{eq:tres}
 \delta_x = 0.51 \frac{\lambda_0}{\mathrm{NA}}
@@ -129,7 +129,7 @@ This can be solved to give a condition on the angle in the case where $\mathbf{k
 \sin{\theta} \approx \frac{|\mathbf{k}_s|}{|\mathbf{k}_i|} = \frac{\lambda}{n\Lambda}
 \end{equation}
 
-In some crystals, higher order diffraction angles occur, however, it is difficult to achieve high modulation efficiences, and they are not of significant interest to this research.
+In some crystals, higher order diffraction angles occur, however, it is difficult to achieve high modulation efficiencies, and they are not of significant interest to this research.
 
 % \begin{figure}[h!]
 % \centering
@@ -186,13 +186,13 @@ It can be seen via an identical simplification to the above that the combination
 
 %% more equations/background
 
-Light scattering from moving particles induces a change in the frequency of scattered light, due to the Doppler effect. This change in frqeuency can be expressed as follows, where $\alpha$ is the angle between the direction of light propagation and the scattered light detector, $\beta$ is the angle between the direction of motion of the media and the direction of light propagation, and $v(t)$ is the instantaneous velocity of the sample. \cite{hurst}
+Light scattering from moving particles induces a change in the frequency of scattered light, due to the Doppler effect. This change in frequency can be expressed as follows, where $\alpha$ is the angle between the direction of light propagation and the scattered light detector, $\beta$ is the angle between the direction of motion of the media and the direction of light propagation, and $v(t)$ is the instantaneous velocity of the sample. \cite{hurst}
 
 %Because the speed of scattering media will always be much smaller than the speed of the light, the change in frequency caused by the Doppler effect is:
 
 \begin{equation} \Delta f = 2 \frac{v(t)}{c} f_0 \cos{(\beta)} \sin{(\frac{\alpha}{2})} \end{equation}
 
-In the FO-DOCM apparatus, only light that is scattered backwards can be detected, so $\alpha$ is assumed to be $\pi$ radians. The direction of motion is assumed to be in the direction of light propogation for simplicity, so that $\beta = 0$. The equation then simplifies to the following expression for the new instantaneous frequency change.
+In the FO-DOCM apparatus, only light that is scattered backwards can be detected, so $\alpha$ is assumed to be $\pi$ radians. The direction of motion is assumed to be in the direction of light propagation for simplicity, so that $\beta = 0$. The equation then simplifies to the following expression for the new instantaneous frequency change.
 
 \begin{equation} \Delta f(t) = 2 \frac{v(t)}{c} f_0 \end{equation}
 
@@ -204,7 +204,7 @@ Integrating the instantaneous frequency gives the phase as follows, where $d(t)$
 & = 2 \pi \left( f_0 t + 2 \frac{d(t)}{c} \right)
 \end{align}
 
-The instantaneous electric field amplitudes from Section~\ref{sec:aom_carrier}, $E_a$ and $E_b$, may be written as follows. $E_a$ has been scattered from media moving with the velocity given by Equation~\ref{eq:media_v}, while $E_b$ has not, representing the sample and reference paths in the OCT system.
+The instantaneous electric field amplitudes from Section~\ref{sec:aom_carrier}, $E_a$ and $E_b$, may be written as follows. $E_a$ has been scattered from media moving with the velocity $v(t)$, while $E_b$ has not, representing the sample and reference paths in the OCT system.
 
 \begin{align}
 E_a(t) & = E_a \exp{\left(2 \pi j (f + F_1) \left( t + 2 \frac{d(t)}{c}\right) \right)}  \\
@@ -223,7 +223,7 @@ This equation can be simplified slightly by substituting two new symbols for the
 E_b(t) + E_a(t) = E_a \exp{(2 \pi t j f')}\left(\exp{\left(2 \pi j f' \frac{ 2 d(t)}{c}\right)} + \frac{E_b}{E_a} \exp{(-2 \pi t j \Delta F)}\right)
 \end{dmath}
 
-The instantaneous light intensity is equivalent to the absolute value of the instaneous electric field amplitude squared.
+The instantaneous light intensity is equivalent to the absolute value of the instantaneous electric field amplitude squared.
 
 % \begin{dmath}
 % I(t) = E_a^2 \left(1 + \frac{E_b^2}{E_a^2} + 2 \frac{E_b}{E_a} \cos{\left(2 \pi t \left(\Delta F + f' \left( \frac{2 A_o \cos{\omega t}}{c} \right) \right)\right)} \right)
@@ -233,7 +233,7 @@ The instantaneous light intensity is equivalent to the absolute value of the ins
 I(t) = E_a^2 + E_b^2 + 2 E_b E_a \cos{ 2 \pi \left(t \Delta F + f' \frac{2 d(t)}{c}   \right)}
 \end{dmath}
 
-The result of the frequency shift induced by the motion of the media can clearly be seen in the instaneous phase of the intensity oscillation.
+The result of the frequency shift induced by the motion of the media can clearly be seen in the instantaneous phase of the intensity oscillation.
 
 \begin{dmath}
 \label{eq:phase_aom_doppler}
@@ -243,7 +243,7 @@ The result of the frequency shift induced by the motion of the media can clearly
 This is equivalent to phase modulation, with the periodic change in phase of:
 
 \begin{equation}
-f' \left( \frac{2 d(t)}{c} \right)
+2 \pi f' \left( \frac{2 d(t)}{c} \right)
 \end{equation}
 
 This oscillation can be extracted from the captured signal using the Hilbert transform, as discussed in Section \ref{sec:sigproc_mo_anal}. While this derivation assumed perfectly monochromatic light sources, as would be the case in an ideal laser interferometer, the general result extends to the non-monochromatic random signals used in Section~\ref{sec:principles_oct}.
@@ -344,7 +344,7 @@ Consequently, the periodic displacement of the sample, $d(t)$ may be calculated.
 
 \section{Related work}
 
-Since the 1960s, interferometry with laser light has been used to measure vibration in the cochlea. Early laser doppler intereferometer experiments required the placement of reflective beads to isolate tissues of interest, however, these can influence the mechanical properties of the cochlea. \cite{Nuttall2012} Recent methods involving laser doppler interferometry have had success in measuring vibrations as small as 30 picometers without beads, but also require a parallel system, such as confocal microscopy, in order to produce an image of the tissues. Furthermore, laser interferometers are highly coherent, so without reflective beads, vibration measurements have a depth seperation determined primarily by the beam divergence angle. \cite{Jacob2009} \cite{Ren2002} \cite{Ren2011} 
+Since the 1960s, interferometry with laser light has been used to measure vibration in the cochlea. Early laser doppler interferometer experiments required the placement of reflective beads to isolate tissues of interest, however, these can influence the mechanical properties of the cochlea. \cite{Nuttall2012} Recent methods involving laser doppler interferometry have had success in measuring vibrations as small as 30 picometers without beads, but also require a parallel system, such as confocal microscopy, in order to produce an image of the tissues. Furthermore, laser interferometers are highly coherent, so without reflective beads, vibration measurements have a depth seperation determined primarily by the beam divergence angle. \cite{Jacob2009} \cite{Ren2002} \cite{Ren2011} 
 
 Low coherence interferometry, such as OCT, is capable of solving these problems. As mentioned in Section \ref{sec:intro}, this FO-DOCM system is designed to update the previous system used in the Micromechanics Group, designed and constructed by Stanley Hong. The FO-DOCM system is quite similar to Hong's work, but is also different in several ways: the use of fiber optic components rather than free space optics, the use of a longer wavelength source, and, most importantly, the revised alignment and positioning apparatus. Additionally, the FO-DOCM system allows for continuous scanning of lines in an image, rather than point-by-point pixel acquisition. \cite{hong}
 
@@ -352,13 +352,13 @@ Low coherence interferometry, such as OCT, is capable of solving these problems.
 
 \paragraph{Spectral-domain doppler OCT systems} While the FO-DOCM project uses time-domain doppler OCT, work has also been done in the field of spectral domain doppler OCT.  In order to detect motion, a spectral-domain OCT system must be sensitive to changes in optical phase. This is unlike the system described in this thesis, which may be constructed from standard single mode optical fibers, despite the randomization of phase that they induce. Spectral-domain doppler OCT systems have achieved results with an axial resolution of 13 microns and a motion detection noise floor of 300 pm. It is thought that a time domain approach can result in higher resolution motion measurements, as a monolithic photodiodes have better noise equivalent power then a CCD line camera with a diffraction grating. Furthermore, the sampling rate of a CCD sensor is very limited compared to a photodiode, restricting the speed of phase acquisition. However, the use of a time-domain system adds the considerable expense of requiring physical motion to scan the z-axis, resulting in significantly slower image acquisition. \cite{Choudhury2011} \cite{Subhash2012}
 
-\paragraph{Trans-bone imaging} Doppler OCT has been previously used with some success for measuring vibrations of cochlear tissues through bone. With a 935nm center wavelength, motion inside an {\em in vivo} mouse cochlea was measured, with an noise floor of approximately 100 pm/Hz$^{0.5}$. \cite{Gao2013} It is suspected that a 1310nm center wavelength, as used in the FO-DOCM system, will be even more effective at penetrating bony tissue. \cite{Sandell2011} \cite{Bashkatov2006}
+\paragraph{Trans-bone imaging} Doppler OCT has been previously used with some success for measuring vibrations of cochlear tissues through bone. With a 935 nm center wavelength, motion inside an {\em in vivo} mouse cochlea was measured, with an noise floor of approximately 100 pm/Hz$^{0.5}$. \cite{Gao2013} It is suspected that a 1310 nm center wavelength, as used in the FO-DOCM system, will be even more effective at penetrating bony tissue. \cite{Sandell2011} \cite{Bashkatov2006}
 
 \paragraph{Microangiography} Doppler OCT is not restricted to measuring periodic vibrations -- one of its first applications was for angiography, measuring the velocity of blood flow inside tissue. Current techniques with doppler optical microangiography are capable of isolating and measuring bloodflow in a single vessel over time. While low frequency motion measurements such as constant motion hae a significantly higher noise floor for measurement, blood flow velocity amplitudes are typically much greater than vibrational amplitudes. \cite{Dziennis2012}
 
 %\subsection{Positioning and GRIN lens}
 
-\paragraph{Minituarization of OCT apparatus} One of the advantages of the FO-DOCM system to the Micromechanics Group is its smaller size, so this work may be seen as continuing the active effort of minimizing the size of the OCT apparatus. Research in this area includes the creation of a miniature swept frequency laser source for OCT imaging, which could enable a higher axial resolution in a smaller form factor. \cite{Goldberg2009} GRIN lenses, in addition to near diffraction limited optical performance, also have a significant size advantage, and havealso been used in previous research as endoscopic probes for OCT. \cite{Xie2006}
+\paragraph{Minituarization of OCT apparatus} One of the advantages of the FO-DOCM system to the Micromechanics Group is its smaller size, so this work may be seen as continuing the active effort of minimizing the size of the OCT apparatus. Research in this area includes the creation of a miniature swept frequency laser source for OCT imaging, which could enable a higher axial resolution in a smaller form factor. \cite{Goldberg2009} GRIN lenses, in addition to near diffraction limited optical performance, also have a significant size advantage, and have also been used in previous research as endoscopic probes for OCT. \cite{Xie2006}
 
 % talk about uniqueness of our mechanical apparatus?
 
