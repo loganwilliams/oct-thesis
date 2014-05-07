@@ -1,6 +1,6 @@
 \chapter{System characterization and results}
 
-In this chapter, efforts to characterize the performance and capabilities of the FO-DOCM system will be detailed. Results obtained with the FO-DOCM device on actual cochlear tissues will be shown. The shortcomings and successes of the apparatus will be detailed, and conclusions will be drawn.
+In this chapter, efforts to characterize the performance and capabilities of the FO-DOCM system will be detailed. Results obtained with the FO-DOCM device on actual cochlear tissues will be shown. The shortcomings and successes of the apparatus will be discussed, and conclusions will be drawn.
 
 \section{Resolution performance}
 
@@ -34,7 +34,7 @@ The axial point spread function (PSF) measured by this process, and a comparison
 
 \subsection{Measurement of transverse resolution}
 
-The fiber DOCM system is not designed for en-face (transverse) scanning, so verifying the transverse resolution was significantly more difficult. To do this, two methods were used: an en-face scan of a standard 1951 USAF resolution test target, and a cross-sectional scan of the edge of a microscope coverslip.
+The fiber DOCM system is not designed for en-face (transverse) scanning, so measuring the transverse resolution was significantly more difficult than measuring the axial resolution. To measure the transverse resolution, two methods were used: an en-face scan of a standard 1951 USAF resolution test target, and a cross-sectional scan of the edge of a microscope coverslip.
 
 \begin{figure}[h!]
 \centering
@@ -42,7 +42,9 @@ The fiber DOCM system is not designed for en-face (transverse) scanning, so veri
 \caption[Result of en-face scan of USAF target.]{Result of en-face scan of 1951 USAF target. Note the distortion caused by the variable speed and low repeatability on the transverse stepper motor stage. Despite the distortion, all of the elements of Group 6 are distinguishable, indicating a transverse resolution of approximately 8.8 microns.\label{fig:usaf_oct}}
 \end{figure}
 
-Shown in Figure~\ref{fig:usaf_oct}, the USAF resolution test target was imaged by holding the fiber DOCM system at a constant z-axis depth, and recording the photodiode signal while moving the y-axis continuously. Then, the x-axis was incremented by 1 micron, and the process repeated. Because the transverse stage was not chosen for suitability for this type of scanning, severe distortion is visible in the result due to the acceleration and deceleration of the stage during the y-axis scan. Point-by-point scanning was not possible due to thes slow speed of the transverse stage. Vertical re-alignment of each column was performed to correct for poor repeatability in the stage, and a median filter was applied to reduce noise. Despite the clear unsuitability of this method of scanning for imaging applications, the visibility of all elements of group 6 within the USAF resolution test target in this experiment indicates a transverse resolution of approximately 8.8 microns.
+Shown in Figure~\ref{fig:usaf_oct}, the USAF resolution test target was imaged by holding the fiber DOCM system at a constant z-axis depth, and recording the photodiode signal while moving the y-axis continuously. Then, the x-axis was incremented by 1 micron, and the process repeated. Because the transverse stage was not chosen for suitability for this type of scanning, severe distortion is visible in the result due to the acceleration and deceleration of the stage during the y-axis scan. Point-by-point scanning was not possible due to the slow speed of the transverse stage. Vertical re-alignment of each column was performed to correct for poor stage repeatability in the y-axis, and a median filter was applied to reduce noise. Despite the clear unsuitability of this method of scanning for imaging applications, the visibility of all elements of group 6 within the USAF resolution test target in this experiment indicates a transverse resolution of approximately 8.8 microns.
+
+To obtain a less distorted measure of the transverse resolution of the fiber DOCM system, a second experiment was performed. In this experiment, shown in Figure~\ref{fig:coverslip1}, the edge of a microscope coverslip, resting on a microscope slide, was imaged in the x-z plane. The transition between the coverslip and air is the transverse step function of the system. Theoretically, this step function could be differentiated to obtain the transverse point spread function. However, differentiation increases noise, which renders this PSF unsuitable. Instead, the integral of a Gaussian function, an error function, can be fitted to the step function, as shown in Figure~\ref{fig:coverslip2}. The best fit parameters correspond to a transverse FWHM resolution of $9 \pm 0.7$ microns, which corroborates the results obtained with the USAF target image.
 
 \begin{figure}[h!]
 \centering
@@ -51,11 +53,9 @@ Shown in Figure~\ref{fig:usaf_oct}, the USAF resolution test target was imaged b
 \caption[Result of scan of the edge of a a glass coverslip.]{Result of scan of the edge of a a glass coverslip, with major features labeled. On the right is the same image, with 1:1 scaling between the x and z axes.\label{fig:coverslip1}}
 \end{figure}
 
-To obtain a less distorted measure of the transverse resolution of the fiber DOCM system, a second experiment was performed. In this experiment, shown in Figure~\ref{fig:coverslip1}, the edge of a microscope coverslip, resting on a microscope slide, was imaged in the x-z plane. The transition between the coverslip and air is the transverse step function of the system. Theoretically, this step function could be differentiated to obtain the transverse point spread function. However, differentiation increases noise, which renders this PSF unsuitable. Instead, the integral of a Gaussian function, an error function, can be fitted to the step function, as shown in Figure~\ref{fig:coverslip2}. The best fit parameters correspond to a transverse FWHM resolution of $9 \pm 0.7$ microns, which corroborates the USAF target image.
-
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.8\textwidth]{Images/Results/line_step.png}
+\includegraphics[width=0.75\textwidth]{Images/Results/line_step.png}
 \caption[Transverse step function measured along the glass coverslip.]{Transverse step function measured along the glass coverslip. This corresponds to a single horizontal line in Figure~\ref{fig:coverslip1}. The best fit error function (the integral of a Gaussian) corresponds to a FWHM resolution of $9 \pm 0.7$ microns, corroborating the USAF target experiment.\label{fig:coverslip2}}
 \end{figure}
 
@@ -63,11 +63,11 @@ To obtain a less distorted measure of the transverse resolution of the fiber DOC
 
 To measure the noise floor of motion measurements, the sample path was focused onto a fixed aluminum front-surface mirror. 
 % The spectral density noise floor of this signal is shown in Figure~\ref{fig:noise_floor1}. Above approximately 2 KHz, the effective noise floor for motion resolution with a sample reflectivity of 1 is shown to be 2 pm/Hz$^{0.5}$.
-To more accurately simulate the reflectivity of tissues, a $10^{-2}$ attenuator was inserted into the optical path, attenuating the sample signal by $10^{-4}$. The acquired photodiode signal was analyzed according to the process outlined in Section~\ref{sec:motion_analysis_2}. The spectral density of this signal is shown in Figure~\ref{fig:noise_floor2}.
+To more accurately simulate the reflectivity of tissues, a $10^{-2}$ attenuator was inserted into the optical path, attenuating the sample signal by $10^{-4}$. The acquired photodiode signal was analyzed according to the process outlined in Section~\ref{sec:motion_analysis_2}. The spectral density of the resulting displacement signal is shown in Figure~\ref{fig:noise_floor2}.
 %After adjusting the reference path reflectivity to match, there was little difference in the effective motion noise floor.
 Above 3 KHz, a noise floor of approximately 1 pm/Hz$^{0.5}$ was measured.
 
-The strong impulsive frequencies present above 10 KHz are caused by electromagnetic interference in the analog-to-digital converter, originating from the computer hosting it, and not any inherent issues with the FO-DOCM system. Below 4 KHz, the frequencies could be the result of mechanical vibrations. An effort to further explain the presence of these frequencies is made in Section~\ref{sec:known_issues}. Because of this interference, stimulus frequencies of 1 KHz, 4 KHz, and 16 KHz were used in further testing. % justify this?
+The strong impulsive frequencies present above 10 KHz are caused by electromagnetic interference in the analog-to-digital converter, originating from within the computer hosting it, and not any inherent issues with the FO-DOCM system. Below 3 KHz, the harmonic noise could be the result of mechanical vibrations in the apparatus, or sidebands produced by the RF synthesizer. An effort to further explain the presence of these frequencies is made in Section~\ref{sec:known_issues}. Because of this interference, stimulus frequencies of 1 KHz, 4 KHz, and 16 KHz were used in further testing. % justify this?
 
 % \begin{figure}[h!]
 % \centering
@@ -77,7 +77,7 @@ The strong impulsive frequencies present above 10 KHz are caused by electromagne
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.95\textwidth]{Images/Results/noise_floor_2_big.png}
+\includegraphics[width=0.85\textwidth]{Images/Results/noise_floor_2_big.png}
 \caption[Noise floor of motion measurement with sample reflectivity of approximately $10^{-4}$.]{Noise floor of motion measurement with sample reflectivity of approximately $10^{-4}$. The noise floor above 3 KHz is approximately 1 pm/Hz$^{0.5}$. The impulsive peaks are the result of electromagnetic interference between the ADC and the computer hosting it. \label{fig:noise_floor2}}
 \end{figure}
 
@@ -86,16 +86,16 @@ To verify the linearity of the motion measurements, a piezo-electric actuator wa
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.75\textwidth]{Images/Results/motion_linearity.png}
-\caption{Linearity of motion amplitude measurements.\label{fig:motion_linearity}}
+\caption[Linearity of motion amplitude measurements]{Linearity of motion amplitude measurements, for three stimulus frequencies over two orders of magnitude.\label{fig:motion_linearity}}
 \end{figure}
 
 \subsection{Resolution of motion differentiation}
 
-Another important system characteristic for analysis of cochlear motion is referred to as ``motion differentiation resolution'' -- the ability of the system to resolve the difference in vibrational amplitude between closely spaced objects. For this experiment, a glass coverslip was held just above a small ball-bearing glued to a piezo electric crystal. A sequence of reflectance and motion magnitude images were made, while the distance between the ball bearing and the coverslip was gradually reduced. The motion at the center of the ball bearing signal and at the center of the coverslip signal is plotted in Figure~\ref{fig:diff}. Motion measurements were taken as the median, over a $3 \times 1$ micron area, of the the amplitude of the best cosine fit to the analyzed distance signal. It should be noted that the reflected amplitude from the coverslip was approximately 10\% that of the reflected amplitude from the ball bearing.
+Another important system characteristic for analysis of cochlear motion is referred to as ``motion differentiation resolution'' -- the ability of the system to resolve the difference in vibrational amplitude between closely spaced objects. For this experiment, a glass coverslip was held just above a small ball-bearing glued to a piezo electric crystal. A sequence of reflectance and motion magnitude images were made, with an axial step size of 1 micron and no transverse step, while the distance between the ball bearing and the coverslip was gradually reduced. The motion at the center of the ball bearing signal and at the center of the coverslip signal is plotted in Figure~\ref{fig:diff}. Motion measurements were taken as the median, over a $3 \times 1$ pixel area, of the the amplitude of the best cosine fit to the analyzed distance signal. It should be noted that the reflected amplitude from the coverslip was approximately 10\% that of the reflected amplitude from the ball bearing.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{Images/Results/differentiation.png}
+\includegraphics[width=0.7\textwidth]{Images/Results/differentiation.png}
 \caption[Motion differentiation of adjacent stationary and vibrating interfaces.]{Motion differentiation of adjacent stationary and vibrating interfaces (coverslip and ball-bearing, respectively), measured with the FO-DOCM system.\label{fig:diff}}
 \end{figure}
 
@@ -103,35 +103,54 @@ The motion amplitude between adjacent surfaces is shown to be differentiable for
 
 \section{Demonstrative images and motion measurements}
 
-[This section has not yet been completed.]
+A guinea pig ({\em Cavia porcellus}) cochlea was used to test the ability of the FO-DOCM system to image biological tissues of interest for the Micromechanics Group. The sample was isolated and immersed in an artificial perilymph solution, while adhered to a petri dish with dental cement. The cochlea was imaged while immersed, using the continuous scanning method described in Section~\ref{sec:imgen}, with a transverse step size of 2 microns. The image in Figure~\ref{fig:cochlea_image} shows a cross section of the exposed apical turn, near a small tear in the Reissner's membrane. Several cochlear tissues are visible in the image, including the Reissner's membrane, the Basilar membrane, the Organ of Corti, and the surrounding bone. The intensity of back-scattered light is shown on a logarithmic scale.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.0\textwidth]{Images/missing.png}
-\caption[An annotated guinea pig cochlea, imaged with the FO-DOCM system.]{An annotated guinea pig cochlea, imaged with the FO-DOCM system. As the motion induced by the piezo-electric actuator has an amplitude on the order of 10 nm, it does not result in visible artifacts in this image. \label{fig:cochlea_image}}
+\includegraphics[width=1.0\textwidth]{Images/Results/cochlea_annotated2.png}
+\caption[An unfixed annotated guinea pig cochlea, imaged with the FO-DOCM system.]{An unfixed annotated guinea pig cochlea, imaged with the FO-DOCM system. The transverse (x-axis) step size is 2 microns, and the z-axis is a continuous scan. Several distinct cochlear tissues are visible and labeled. \label{fig:cochlea_image}}
 \end{figure}
 
-% Table indicating motion measurements from this fixed cochlea.
-\begin{table}[h!]
-\centering
-\begin{tabular}{l | c c}
-Location & Amplitude (nm) & Phase (rad) \\ \hline
-OHC & ? & ? \\
-BMa & ? & ? \\
-BMp & ? & ? \\
-TM & ? & ? \\
-RM & ? & ? \\
-Bone & ? & ? \\
-\end{tabular}
-\caption[Motion analysis of fixed cochlea.]{Motion analysis of fixed cochlea. The cochlea was stimulated with a piezo-electric transducer at 4.0 KHz. Results were averaged over a $9 \times 9$ micron area (corresponding to $3 \times 3$ pixels in Figure~\ref{fig:cochlea_image}). \label{tab:cochlea_vib}}
-\end{table}
+The cochlea was later fixed in 2\% gluteraldehye, and re-imaged several days after the surgery. The fixation process results in changes to the tissues in the cochlea -- an increase in reflectivity is clearly visible, as is the peeling away of the Tectorial membrane (???).
 
-A guinea pig cochlea was prepared by fixing in Glutaraldehyde. The cochlea was adhered with dental cement to a petri dish, which was excited by a piezo-electric transducer, with a stimulus frequency of 2.0 KHz. The cochlea was imaged by the FO-DOCM system over an $501 \times 501$ micron area, with pixel size of $3 \times 3$ microns. The log reflectivity over this area is shown in Figure~\ref{fig:cochlea_image}. The amplitude and phase of vibration at several labeled sites is shown in Table~\ref{tab:cochlea_vib}. These motion parameters were averaged over a $9 \times 9$ micron area.
+To test the ability of the FO-DOCM system to measure vibrations in cochlear tissues, the sample was excited by placing a piezo-electric actuator in contact with the bone. The sample was then imaged by the FO-DOCM system in a pixel by pixel manner, collecting data for analyzing reflected intensity and the motion of the sample at each point. The size of the image was $1200\times800$ microns, with a pixel size of $3\times5$ microns. The motion analysis showed a much larger range of motion than was expected, spanning almost two orders of magnitude. However, it is not believed that this is the result of noise or poor measurements, as the measured phase of the motion is very locally coherent. The measured reflectivity and motion parameters are shown in Figures \ref{fig:fixed_refl} and \ref{fig:motion_map}. As the motion induced by the piezo-electric actuator has an amplitude on the order of 10 nm, it does not result in visible artifacts in either image. Due to the large variation in motion amplitude, it is shown on a logarithmic scale, in units of dB nm.
+
+\begin{figure}[h!]
+\centering
+\raisebox{-0.5\height}{\includegraphics[width=0.58\textwidth]{Images/Results/4-28.png}}
+\raisebox{-0.5\height}{\includegraphics[width=0.4\textwidth]{Images/Results/4-29/reflectivity.png}} 
+\caption[A fixed guinea pig cochlea, imaged with the FO-DOCM system.]{A fixed guinea pig cochlea, imaged with the FO-DOCM system. On the left, is a large area quick scan performed with continuous z-axis motion and a 10 micron transverse pixel size, and on the right is a smaller reflectivity map that was captured simultaneously with the motion map in Figure~\ref{fig:motion_map}, with a $3\times5$ micron pixel size. The cross section is slightly different between the two scans, and they are separated by several hours. \label{fig:fixed_refl}}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.03\textwidth]{Images/Results/4-29/motion.png}
+\caption[Motion map of vibrations in a fixed guinea pig cochlea.]{Motion map of vibrations in a fixed guinea pig cochlea, phase shown on the left in radians, and amplitude on the right in dB nm, captured simultaneously with the reflectivity map on the right in Figure~\ref{fig:fixed_refl}. A $3\times3$ median filter was used to reduce noise. \label{fig:motion_map}}
+\end{figure}
+
+
+% % Table indicating motion measurements from this fixed cochlea.
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{l | c c}
+% Location & Amplitude (nm) & Phase (rad) \\ \hline
+% OHC & ? & ? \\
+% BMa & ? & ? \\
+% BMp & ? & ? \\
+% TM & ? & ? \\
+% RM & ? & ? \\
+% Bone & ? & ? \\
+% \end{tabular}
+% \caption[Motion analysis of fixed cochlea.]{Motion analysis of fixed cochlea. The cochlea was stimulated with a piezo-electric transducer at 4.0 KHz. Results were averaged over a $9 \times 9$ micron area (corresponding to $3 \times 3$ pixels in Figure~\ref{fig:cochlea_image}). \label{tab:cochlea_vib}}
+% \end{table}
+
 
 \section{Known issues}
 \label{sec:known_issues}
 
-% \paragraph{Scanning speed}
+\paragraph{Scanning speed}
+
+As a result of the long settling times of the z-axis piezomotor stage, the FO-DOCM system is slower than the Hong system when scanning pixel by pixel. However, when using the continuous scanning method discussed in Section~\ref{sec:imgen}, scans can be significantly faster. This suggests that a different paradigm of imaging may be more useful for the FO-DOCM system. Rather than performing an entire motion map scan at once, an interface could be developed to allow the motion at specific points of interest in the continuously scanned image to be measured.
 
 % Currently, the FO-DOCM system does not offer significant improvements in the speed of image and motion acquisition compared to the Hong system, its predecessor in the Micromechanics Group. \cite{hong}
 
@@ -147,14 +166,14 @@ The transverse resolution measured of the FO-DOCM system was significantly worse
 
 \paragraph{Signal-to-noise ratio}
 
-The noise floor of motion measurements shows significant interference at particular frequencies, though the overall noise floor is quite low. It is believed that much of the higher noise floor at these particular frequencies results from electromagnetic interference between the analog-to-digital conversion PCI card, and the computer that hosts it. To test this assumption, a signal was acquired from the analog-to-digital converter while the converter was connected only to a 50 ohm terminator. This power spectrum shows frequency peaks explaining the 16 KHz, 19 KHz, and higher peaks in Figure~\ref{fig:noise_floor2}. As the signal was acquired with the inputs immediately terminated, the source of this interference is most likely to be inside the computer itself, and would require a different analog-to-digital converter to eliminate. % Include graph? Test this again?
+The noise floor of motion measurements shows significant interference at particular frequencies, though the broadband noise floor is quite low. It is believed that much of the harmonic noise at frequencies above 10 KHz results from electromagnetic interference between the analog-to-digital conversion PCI card, and the computer that hosts it. To test this assumption, a signal was acquired from the analog-to-digital converter while the converter was connected only to a 50 ohm terminator. This power spectrum shows frequency peaks explaining the 16 KHz, 19 KHz, and higher peaks in Figure~\ref{fig:noise_floor2}. As the signal was acquired with the inputs immediately terminated, the source of this interference is most likely to be inside the computer itself, and would require a different analog-to-digital converter to eliminate. % Include graph? Test this again?
 
-The lower peaks in noise, at 380 Hz, 760 Hz and 1950 Hz, are still of unknown origin. Mechanical vibration and noise becomes more likely at lower frequencies. To limit mechanical vibration, vibration damping washers could be employed on the fasteners in the alignment apparatus. The peaks could also be the result of sidebands or distortion in the RF synthesizer output. Further investigation and debugging is required if the FO-DOCM system is to become useful for measuring small amplitude motion at frequencies less than 3 KHz.
+The lower peaks in noise, at 380 Hz, 760 Hz and 1950 Hz, are still of unknown origin. Mechanical noise and vibration are more probable sources of interference at lower frequencies. To limit mechanical vibration, vibration damping washers could be employed on the fasteners in the alignment apparatus. The peaks could also be the result of sidebands produced by the RF synthesizer, or distortion caused by the RF amplifier. Further investigation and debugging is required if the FO-DOCM system is to become useful for measuring small amplitude motion at frequencies less than 3 KHz.
 
 % Mechanical resonances?
 
 \section{Conclusion}
 
-The design and implementation a fiber optic doppler optical coherence microscopy (FO-DOCM) system for use in cochlear imaging was presented. The FO-DOCM system uses a fiber optic design to reduce system size and complexity and a novel alignment and micropositioning apparatus can increase the ease of use for the researcher performing the imaging. To enable precise motion measurements, a time domain approach is used, utilizing an acousto-optic modulator (AOM) based optical heterodyne system to generate a stationary interference carrier frequency.
+The design and implementation a fiber optic doppler optical coherence microscopy (FO-DOCM) system for use in cochlear imaging was presented. The FO-DOCM system uses a fiber optic design to reduce system size and complexity over the previous DOCM system in use at the Micromechanics Group. Additionally, a novel alignment and micropositioning apparatus was created to increase the ease of use for the researcher performing the imaging. To enable precise motion measurements, a time domain OCT approach is used, utilizing an acousto-optic modulator (AOM) based optical heterodyne system to generate a stationary interference carrier frequency.
 
-This system is shown to be capable of measuring motion with magnitude on the order of $10$ picometers, competitive with or better performance than most published doppler optical coherence tomography systems. In addition to interferometrically measuring small amplitude motion, the FO-DOCM system is shown to be capable of imaging with a volumetric resolution of $10 \times 9 \times 9$ microns. Results of imaging cochlear tissue {\em in vitro} using the FO-DOCM system have been presented, showing its suitability for cochlear imaging. The FO-DOCM system will continue to be used and developed by the Micromechanics Group for use in cochlear research.
+This system is shown to be capable of measuring motion with magnitude on the order of $10$ picometers, performance competitive with or better than most published doppler optical coherence tomography systems. In addition to interferometrically measuring small amplitude motion, the FO-DOCM system is shown to be capable of imaging with a volumetric resolution of $10 \times 9 \times 9$ microns. Results of imaging cochlear tissue {\em in vitro} using the FO-DOCM system have been presented, showing its suitability for cochlear imaging. The FO-DOCM system will continue to be used and developed by the Micromechanics Group for use in cochlear research.
